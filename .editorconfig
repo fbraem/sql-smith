@@ -1,0 +1,5 @@
+[*.md]
+trim_trailing_whitespace = false
+
+[*.rst]
+trim_trailing_whitespace = false
