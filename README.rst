@@ -11,12 +11,14 @@ Installation
 ------------
 
 .. code-block:: sh
+
     $ pip install sql-smith
 
 Quick Start
 -----------
 
 .. code-block:: python
+
     from sql_smith import QueryFactory
     from sql_smith.engine import CommonEngine
     from sql_smith.functions import field
