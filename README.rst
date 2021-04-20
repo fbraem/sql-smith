@@ -8,14 +8,14 @@ sql-smith
     Latitude_, for the simple reason that this Python module is a port of Latitude.
 
 Installation
-------------
+************
 
 .. code-block:: sh
 
     $ pip install sql-smith
 
 Quick Start
------------
+***********
 
 QueryFactory is a factory to create a **SELECT**, **INSERT**, **UPDATE** or **DELETE** query.
 Use the fluent interface of the queries to complete the query.
