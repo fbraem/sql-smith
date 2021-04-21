@@ -1,5 +1,5 @@
 from sql_smith.engine import BasicEngine
-from sql_smith.query import SelectQuery
+from sql_smith.query.sql_server.select_query import SelectQuery
 from sql_smith.query.sql_server.delete_query import DeleteQuery
 
 
