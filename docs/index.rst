@@ -20,6 +20,7 @@ injection and identifier quoting for MySQL, SQL Server, Postgres, and other data
     quickstart
     queries
     reference
+    api
     difference
 
 .. _Latitude: https://latitude.shadowhand.com/
