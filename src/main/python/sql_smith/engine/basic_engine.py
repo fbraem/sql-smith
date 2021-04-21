@@ -39,7 +39,7 @@ class BasicEngine(EngineInterface):
         A backslash is used to escape wildcards.
         Standard wildcards are underscore and percent sign.
         """
-        return parameter.replace('\\', '\\\\').replace('%', '_').replace('\\%', '\\_')
+        return parameter.replace('\\', '\\\\').replace('%', '\\%').replace('_', '\\_')
 
     def export_parameter(self, param) -> str:
         """Export a parameter.
