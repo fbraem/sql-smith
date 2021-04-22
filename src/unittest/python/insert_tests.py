@@ -11,17 +11,20 @@ class InsertTests(SqlTestCase):
         self.assertParams((), insert)
 
     def test_map(self) -> None:
-        insert = self._factory \
-            .insert(
-                'users',
-                {
-                    'id': 1,
-                    'username': 'admin'
-                }
-            )
+        new_row = {
+            'id': 1,
+            'username': 'admin'
+        }
 
-        self.assertSql('INSERT INTO users (id, username) VALUES (?, ?)', insert)
-        self.assertParams((1, 'admin'), insert)
+        insert = self._factory \
+            .insert('users', new_row)
+
+        # Before python 3.7, dict is not ordered by insertion.
+        # So, check it dynamically to make this test work in 3.5 and 3.6
+        columns = ', '.join(new_row.keys())
+        values = tuple(new_row.values())
+        self.assertSql('INSERT INTO users ({}) VALUES (?, ?)'.format(columns), insert)
+        self.assertParams(values, insert)
 
     def test_multiple(self) -> None:
         insert = self._factory \
