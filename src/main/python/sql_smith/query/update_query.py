@@ -6,6 +6,7 @@ from sql_smith.query import AbstractQuery
 
 
 class UpdateQuery(HasWhereMixin, AbstractQuery):
+    """Implements an UPDATE query."""
     def __init__(self, engine: 'EngineInterface'):
         super().__init__(engine)
         self._table = None
@@ -13,10 +14,12 @@ class UpdateQuery(HasWhereMixin, AbstractQuery):
         self._where = []
 
     def table(self, table: Union[str, 'StatementInterface']) -> 'UpdateQuery':
+        """Sets the table."""
         self._table = identify(table)
         return self
 
     def set(self, value_dict: Dict[str, Any]):
+        """Sets the column and values with a dictionary."""
         self._set = listing(list(map(
             lambda k, v: express('{} = {}', identify(k), param(v)),
             value_dict.keys(),

@@ -4,6 +4,7 @@ from sql_smith.query import AbstractQuery
 
 
 class UnionQuery(CanUnionMixin, HasOrderByMixin, AbstractQuery):
+    """Implements a union query."""
     def __init__(self, engine: 'EngineInterface', left: 'StatementInterface', right: 'StatementInterface'):
         super().__init__(engine)
         self._order_by = []
@@ -12,6 +13,7 @@ class UnionQuery(CanUnionMixin, HasOrderByMixin, AbstractQuery):
         self._right = right
 
     def all(self, state: bool = True) -> 'UnionQuery':
+        """Sets ALL."""
         self._all = state
         return self
 

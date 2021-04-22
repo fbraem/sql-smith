@@ -2,6 +2,7 @@ from sql_smith.query import InsertQuery as BaseInsertQuery
 
 
 class InsertQuery(BaseInsertQuery):
+    """MySql InsertQuery that supports IGNORE."""
     def __init__(self, engine: 'EngineInterface'):
         super().__init__(engine)
         self._ignore = False

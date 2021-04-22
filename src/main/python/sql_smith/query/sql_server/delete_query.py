@@ -3,6 +3,7 @@ from sql_smith.query import DeleteQuery as BaseDeleteQuery
 
 
 class DeleteQuery(BaseDeleteQuery):
+    """Sql Server DeleteQuery to support LIMIT."""
     def start_expression(self) -> 'ExpressionInterface':
         query = super().start_expression()
         if self._limit is None:

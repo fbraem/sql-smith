@@ -2,7 +2,8 @@
 INSERT
 ======
 
-Use the insert method of QueryFactory to create an INSERT statement.
+Use the :py:func:`~sql_smith.QueryFactory.insert` method of :py:class:`~sql_smith.QueryFactory` to create 
+an INSERT statement. The return value is an instance of :py:class:`~sql_smith.query.InsertQuery`.
 
 Inserts can be performed with a single row:
 

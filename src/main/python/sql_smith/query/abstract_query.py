@@ -5,6 +5,7 @@ from sql_smith.query.query import Query
 
 
 class AbstractQuery(QueryInterface):
+    """Base class for queries."""
     def __init__(self, engine: 'EngineInterface'):
         super().__init__()
         self._engine = engine
@@ -18,6 +19,7 @@ class AbstractQuery(QueryInterface):
         raise NotImplementedError('Must override start_expression')
 
     def compile(self) -> 'Query':
+        """Compiles the query and returns the Query object"""
         query = self.as_expression()
         return Query(
             query.sql(self._engine),

@@ -12,6 +12,7 @@ extensions = ['sphinx.ext.autodoc']
 pygments_style = 'sphinx'
 
 html_static_path = ['_static']
+html_show_sourcelink = False
 
 
 def setup(app):

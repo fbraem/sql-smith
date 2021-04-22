@@ -2,6 +2,10 @@
 API
 ===
 
+A developer building SQL statements only needs to create a QueryFactory with the desired engine. Assemble the
+query with the available functions and compile it to get the SQL statement as a string and the parameters as
+a tuple.
+
 .. module:: sql_smith
 
 Engines
@@ -27,4 +31,41 @@ needs an exception, a specific Engine class can derive from BasicEngine and impl
     :members:
 
 .. autoclass:: sql_smith.engine.SqliteEngine
+    :members:
+
+QueryFactory
+************
+
+The query factory is responsible for creating queries.
+
+.. autoclass:: sql_smith.QueryFactory
+
+Functions
+*********
+
+.. automodule:: sql_smith.functions
+     :members:
+
+Queries
+*******
+
+.. autoclass:: sql_smith.query.AbstractQuery
+    :members:
+
+.. autoclass:: sql_smith.query.DeleteQuery
+    :members:
+
+.. autoclass:: sql_smith.query.InsertQuery
+    :members:
+
+.. autoclass:: sql_smith.query.Query
+    :members:
+
+.. autoclass:: sql_smith.query.SelectQuery
+    :members:
+
+.. autoclass:: sql_smith.query.UnionQuery
+    :members:
+
+.. autoclass:: sql_smith.query.UpdateQuery
     :members:

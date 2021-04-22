@@ -19,7 +19,7 @@ injection and identifier quoting for MySQL, SQL Server, Postgres, and other data
     installation
     quickstart
     queries
-    reference
+    functions
     api
     difference
 

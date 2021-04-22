@@ -17,10 +17,10 @@ Quick Start
     print(query.sql)  # SELECT "id", "username" FROM "users" WHERE "id" = ?
     print(query.params)  # (5)
 
-QueryFactory is a factory to create a **SELECT**, **INSERT**, **UPDATE** or **DELETE** query.
+:py:class:`~sql_smith.QueryFactory` is a factory to create a **SELECT**, **INSERT**, **UPDATE** or **DELETE** query.
 Use the fluent interface of the queries to complete the query.
 
-When the query is ready, compile it. The return value of compile is a Query class instance
+When the query is ready, compile it. The return value of compile is a :py:class:`~sql_smith.query.Query` class instance
 with two properties: sql and params. Use these properties to pass the query to a database.
 
 .. code-block:: python

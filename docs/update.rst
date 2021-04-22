@@ -2,7 +2,8 @@
 UPDATE
 ======
 
-Use the update method of QueryFactory to create an UPDATE statement.
+Use the :py:func:`~sql_smith.QueryFactory.update` method of :py:class:`~sql_smith.QueryFactory` to create an UPDATE
+statement. The return value is an instance of :py:class:`~sql_smith.query.UpdateQuery`.
 
 .. code-block:: python
 

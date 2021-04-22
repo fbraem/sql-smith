@@ -7,6 +7,7 @@ from .abstract_query import AbstractQuery
 class SelectQuery(
     CanUnionMixin, HasFromMixin, HasOrderByMixin, HasWhereMixin, HasLimitMixin, HasOffsetMixin, AbstractQuery
 ):
+    """Implements a SELECT query."""
     def __init__(self, engine: 'EngineInterface'):
         super().__init__(engine)
         self._from = ()
@@ -22,39 +23,49 @@ class SelectQuery(
         self._having = None
 
     def distinct(self, state: bool = True) -> 'SelectQuery':
+        """Add or remove DISTINCT."""
         self._distinct = state
         return self
 
     def columns(self, *columns) -> 'SelectQuery':
+        """Set the columns to select."""
         self._columns = identify_all(*columns)
         return self
 
     def add_columns(self, *columns):
+        """Add columns to the selection."""
         self._columns = (*self._columns, *identify_all(*columns))
         return self
 
     def join(self, table: str, criteria: 'CriteriaInterface', join_type: str = '') -> 'SelectQuery':
+        """Add a join."""
         sql = '{} JOIN {{}} ON {{}}'.format(join_type.upper()).strip()
         self._joins.append(express(sql, identify(table), criteria))
         return self
 
     def inner_join(self, table: str, criteria: 'CriteriaInterface') -> 'SelectQuery':
+        """Add an INNER join."""
         return self.join(table, criteria, 'INNER')
 
     def left_join(self, table: str, criteria: 'CriteriaInterface') -> 'SelectQuery':
+        """Add a LEFT join."""
         return self.join(table, criteria, 'LEFT')
 
     def right_join(self, table: str, criteria: 'CriteriaInterface') -> 'SelectQuery':
+        """Add a RIGHT join."""
         return self.join(table, criteria, 'RIGHT')
 
     def full_join(self, table: str, criteria: 'CriteriaInterface') -> 'SelectQuery':
+        """Add a FULL join."""
         return self.join(table, criteria, 'FULL')
 
     def group_by(self, *columns):
+        """Add a GROUP BY clause."""
         self._group_by = identify_all(*columns)
         return self
 
     def having(self, criteria: 'CriteriaInterface'):
+        """Add an HAVING clause."""
         self._having = criteria
         return self
 

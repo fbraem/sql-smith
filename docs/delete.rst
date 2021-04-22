@@ -2,7 +2,8 @@
 DELETE
 ======
 
-Use the delete method of QueryFactory to create a DELETE statement.
+Use the :py:func:`~sql_smith.QueryFactory.delete` method of :py:class:`~sql_smith.QueryFactory` to create a DELETE 
+statement. The return value is an instance of :py:class:`~sql_smith.query.DeleteQuery`.
 
 .. code-block:: python
 

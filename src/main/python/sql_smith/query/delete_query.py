@@ -4,6 +4,7 @@ from sql_smith.query import AbstractQuery
 
 
 class DeleteQuery(HasFromMixin, HasWhereMixin, HasLimitMixin, AbstractQuery):
+    """Implements the DELETE query."""
     def __init__(self, engine: 'EngineInterface'):
         super().__init__(engine)
         self._from = ()

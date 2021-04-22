@@ -2,7 +2,8 @@
 SELECT
 ======
 
-Use the select method of QueryFactory to create a SELECT statement.
+Use :py:func:`~sql_smith.QueryFactory.select` of :py:class:`~sql_smith.QueryFactory` to create a SELECT statement.
+The return value is an instance of :py:class:`~sql_smith.query.SelectQuery`.
 
 .. code-block:: python
 
@@ -185,3 +186,4 @@ And also the having clause can be applied:
 
         print(query.sql)  # SELECT "department", SUM("salary") AS "total" FROM "employees" GROUP BY "department" HAVING SUM("salary") > ?
         print(query.params)  # (5000, )
+

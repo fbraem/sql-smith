@@ -8,7 +8,7 @@ Criteria
 
 field
 -----
-Use field when a column is needed in a criteria.
+Use :py:func:`~sql_smith.functions.field` when a column is needed in a criteria.
 
 .. code-block:: python
 
@@ -24,7 +24,7 @@ Use field when a column is needed in a criteria.
 
 search
 ------
-Use search for LIKE.
+Use :py:func:`~sql_smith.functions.search` for LIKE.
 
 .. code-block:: python
 
@@ -33,8 +33,8 @@ Use search for LIKE.
     search('last_name').not_ends('rump')  # "last_name" NOT LIKE '%rump' 
 
 on
----
-on can be used in conjunction with join.
+--
+:py:func:`~sql_smith.functions.on` can be used in conjunction with join.
 
 .. code-block:: python
 
@@ -42,7 +42,7 @@ on can be used in conjunction with join.
 
 group
 -----
-Use group to combine criteria
+Use :py:func:`~sql_smith.functions.group` to combine criteria
 
 .. code-block:: python
 
@@ -59,8 +59,8 @@ Expressions
 
 express
 -------
-All expressions are written with the print format, where any {} will be replaced with anything that
-implement the StatementInterface (like queries and other expressions).
+:py:func:`~sql_smith.functions.express` creates an expression. All expressions are written with the print format. 
+Any {} will be replaced with anything that implement the StatementInterface (like queries and other expressions).
 
 .. code-block:: python
 
@@ -72,7 +72,7 @@ Aliases
 
 alias
 -----
-Create an alias for a column or an expression with alias.
+:py:func:`~sql_smith.functions.alias` creates an alias for a column or an expression.
 
 .. code-block:: python
 
@@ -82,8 +82,8 @@ Functions
 *********
 
 func
-____
-Use func for functions.
+----
+Use :py:func:`~sql_smith.functions.func` for functions.
 
 .. code-block:: python
 
@@ -101,6 +101,8 @@ Identifiers
 
 identifier
 ----------
+:py:func:`~sql_smith.functions.identify` is used to create an identifier.
+
 .. code-block:: python
 
     identify('users.username')  # "users"."username"
@@ -108,6 +110,8 @@ identifier
 
 identifier_all
 --------------
+:py:func:`~sql_smith.functions.identifier_all` creates a tuple of identifiers.
+
 .. code-block:: python
 
     identify_all('id', 'username')  # ("id", "username")
@@ -117,6 +121,8 @@ Lists
 
 listing
 -------
+:py:func:`~sql_smith.functions.listing` is used to create a list of parameters or identifiers.
+
 .. code-block:: python
 
     listing((1, 1, 2, 3, 5))  # ?, ?, ?, ?, ?
