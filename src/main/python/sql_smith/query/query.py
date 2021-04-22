@@ -1,8 +1,8 @@
-from typing import List
+from typing import Tuple
 
 
 class Query:
-    def __init__(self, sql: str, params: List):
+    def __init__(self, sql: str, params: Tuple):
         self._sql = sql
         self._params = params
 
@@ -11,5 +11,5 @@ class Query:
         return self._sql
 
     @property
-    def params(self) -> List:
+    def params(self) -> Tuple:
         return self._params
