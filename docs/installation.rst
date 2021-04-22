@@ -4,7 +4,7 @@ Installation
 Python version
 **************
 
-We recommend using the latest version of Python. sql-smith supports Python 3.8 and newer.
+We recommend using the latest version of Python. sql-smith supports Python 3.5 and newer.
 
 Dependencies
 ************
