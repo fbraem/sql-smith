@@ -4,6 +4,7 @@ from .insert_query import InsertQuery
 from .query import Query
 from .select_query import SelectQuery
 from .update_query import UpdateQuery
+from .union_query import UnionQuery
 
 __all__ = [
     'AbstractQuery',
@@ -11,5 +12,6 @@ __all__ = [
     'InsertQuery',
     'Query',
     'SelectQuery',
-    'UpdateQuery'
+    'UpdateQuery',
+    'UnionQuery'
 ]
