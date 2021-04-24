@@ -7,6 +7,8 @@ sql-smith
     The sentence above is, beside the name, a copy from the website of the PHP library
     Latitude_, for the simple reason that this Python module is a port of Latitude.
 
+Read the full `documentation <https://fbraem.github.io/sql-smith>`_.
+
 Installation
 ************
 
