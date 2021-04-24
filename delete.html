@@ -1,0 +1,141 @@
+
+<!DOCTYPE html>
+
+<html>
+  <head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>DELETE &#8212; sql-smith  documentation</title>
+    <link rel="stylesheet" href="_static/pygments.css" type="text/css" />
+    <link rel="stylesheet" href="_static/alabaster.css" type="text/css" />
+    <link rel="stylesheet" type="text/css" href="_static/custom.css" />
+    <script id="documentation_options" data-url_root="./" src="_static/documentation_options.js"></script>
+    <script src="_static/jquery.js"></script>
+    <script src="_static/underscore.js"></script>
+    <script src="_static/doctools.js"></script>
+    <link rel="index" title="Index" href="genindex.html" />
+    <link rel="search" title="Search" href="search.html" />
+    <link rel="next" title="Reference" href="functions.html" />
+    <link rel="prev" title="UPDATE" href="update.html" />
+   
+  <link rel="stylesheet" href="_static/custom.css" type="text/css" />
+  
+  
+  <meta name="viewport" content="width=device-width, initial-scale=0.9, maximum-scale=0.9" />
+
+  </head><body>
+  
+
+    <div class="document">
+      <div class="documentwrapper">
+        <div class="bodywrapper">
+          
+
+          <div class="body" role="main">
+            
+  <div class="section" id="delete">
+<h1>DELETE<a class="headerlink" href="#delete" title="Permalink to this headline">¶</a></h1>
+<p>Use the <code class="xref py py-func docutils literal notranslate"><span class="pre">delete()</span></code> method of <a class="reference internal" href="api.html#sql_smith.QueryFactory" title="sql_smith.QueryFactory"><code class="xref py py-class docutils literal notranslate"><span class="pre">QueryFactory</span></code></a> to create a DELETE
+statement. The return value is an instance of <a class="reference internal" href="api.html#sql_smith.query.DeleteQuery" title="sql_smith.query.DeleteQuery"><code class="xref py py-class docutils literal notranslate"><span class="pre">DeleteQuery</span></code></a>.</p>
+<div class="highlight-python notranslate"><div class="highlight"><pre><span></span><span class="n">factory</span> <span class="o">=</span> <span class="n">QueryFactory</span><span class="p">(</span><span class="n">CommonEngine</span><span class="p">())</span>
+<span class="n">query</span> <span class="o">=</span> <span class="n">factory</span> \
+    <span class="o">.</span><span class="n">delete</span><span class="p">(</span><span class="s1">&#39;users&#39;</span><span class="p">)</span> \
+    <span class="o">.</span><span class="n">where</span><span class="p">(</span><span class="n">field</span><span class="p">(</span><span class="s1">&#39;login_at&#39;</span><span class="p">)</span><span class="o">.</span><span class="n">is_null</span><span class="p">())</span> \
+    <span class="o">.</span><span class="n">compile</span><span class="p">()</span>
+
+<span class="nb">print</span><span class="p">(</span><span class="n">query</span><span class="o">.</span><span class="n">sql</span><span class="p">)</span>  <span class="c1"># DELETE FROM &quot;users&quot; WHERE &quot;login_at&quot; IS NULL</span>
+<span class="nb">print</span><span class="p">(</span><span class="n">query</span><span class="o">.</span><span class="n">params</span><span class="p">)</span>  <span class="c1"># ()</span>
+</pre></div>
+</div>
+<p>It is also possible to provide a LIMIT:</p>
+<div class="highlight-python notranslate"><div class="highlight"><pre><span></span><span class="n">factory</span> <span class="o">=</span> <span class="n">QueryFactory</span><span class="p">(</span><span class="n">CommonEngine</span><span class="p">())</span>
+<span class="n">query</span> <span class="o">=</span> <span class="n">factory</span> \
+    <span class="o">.</span><span class="n">delete</span><span class="p">(</span><span class="s1">&#39;users&#39;</span><span class="p">)</span> \
+    <span class="o">.</span><span class="n">limit</span><span class="p">(</span><span class="mi">5</span><span class="p">)</span> \
+    <span class="o">.</span><span class="n">compile</span><span class="p">()</span>
+
+<span class="nb">print</span><span class="p">(</span><span class="n">query</span><span class="o">.</span><span class="n">sql</span><span class="p">)</span>  <span class="c1"># DELETE FROM &quot;users&quot; LIMIT 5</span>
+<span class="nb">print</span><span class="p">(</span><span class="n">query</span><span class="o">.</span><span class="n">params</span><span class="p">)</span>  <span class="c1"># ()</span>
+</pre></div>
+</div>
+</div>
+
+
+          </div>
+          
+        </div>
+      </div>
+      <div class="sphinxsidebar" role="navigation" aria-label="main navigation">
+        <div class="sphinxsidebarwrapper">
+<h1 class="logo"><a href="index.html">sql-smith</a></h1>
+
+
+
+
+
+
+
+
+<h3>Navigation</h3>
+<ul class="current">
+<li class="toctree-l1"><a class="reference internal" href="installation.html">Installation</a></li>
+<li class="toctree-l1"><a class="reference internal" href="quickstart.html">Quick Start</a></li>
+<li class="toctree-l1 current"><a class="reference internal" href="queries.html">Queries</a><ul class="current">
+<li class="toctree-l2"><a class="reference internal" href="select.html">SELECT</a></li>
+<li class="toctree-l2"><a class="reference internal" href="insert.html">INSERT</a></li>
+<li class="toctree-l2"><a class="reference internal" href="update.html">UPDATE</a></li>
+<li class="toctree-l2 current"><a class="current reference internal" href="#">DELETE</a></li>
+</ul>
+</li>
+<li class="toctree-l1"><a class="reference internal" href="functions.html">Reference</a></li>
+<li class="toctree-l1"><a class="reference internal" href="api.html">API</a></li>
+<li class="toctree-l1"><a class="reference internal" href="difference.html">Latitude vs sql-smith</a></li>
+</ul>
+
+<div class="relations">
+<h3>Related Topics</h3>
+<ul>
+  <li><a href="index.html">Documentation overview</a><ul>
+  <li><a href="queries.html">Queries</a><ul>
+      <li>Previous: <a href="update.html" title="previous chapter">UPDATE</a></li>
+      <li>Next: <a href="functions.html" title="next chapter">Reference</a></li>
+  </ul></li>
+  </ul></li>
+</ul>
+</div>
+<div id="searchbox" style="display: none" role="search">
+  <h3 id="searchlabel">Quick search</h3>
+    <div class="searchformwrapper">
+    <form class="search" action="search.html" method="get">
+      <input type="text" name="q" aria-labelledby="searchlabel" />
+      <input type="submit" value="Go" />
+    </form>
+    </div>
+</div>
+<script>$('#searchbox').show(0);</script>
+
+
+
+
+
+
+
+
+        </div>
+      </div>
+      <div class="clearer"></div>
+    </div>
+    <div class="footer">
+      &copy;.
+      
+      |
+      Powered by <a href="http://sphinx-doc.org/">Sphinx 3.5.4</a>
+      &amp; <a href="https://github.com/bitprophet/alabaster">Alabaster 0.7.12</a>
+      
+    </div>
+
+    
+
+    
+  </body>
+</html>

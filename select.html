@@ -1,0 +1,283 @@
+
+<!DOCTYPE html>
+
+<html>
+  <head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>SELECT &#8212; sql-smith  documentation</title>
+    <link rel="stylesheet" href="_static/pygments.css" type="text/css" />
+    <link rel="stylesheet" href="_static/alabaster.css" type="text/css" />
+    <link rel="stylesheet" type="text/css" href="_static/custom.css" />
+    <script id="documentation_options" data-url_root="./" src="_static/documentation_options.js"></script>
+    <script src="_static/jquery.js"></script>
+    <script src="_static/underscore.js"></script>
+    <script src="_static/doctools.js"></script>
+    <link rel="index" title="Index" href="genindex.html" />
+    <link rel="search" title="Search" href="search.html" />
+    <link rel="next" title="INSERT" href="insert.html" />
+    <link rel="prev" title="Queries" href="queries.html" />
+   
+  <link rel="stylesheet" href="_static/custom.css" type="text/css" />
+  
+  
+  <meta name="viewport" content="width=device-width, initial-scale=0.9, maximum-scale=0.9" />
+
+  </head><body>
+  
+
+    <div class="document">
+      <div class="documentwrapper">
+        <div class="bodywrapper">
+          
+
+          <div class="body" role="main">
+            
+  <div class="section" id="select">
+<h1>SELECT<a class="headerlink" href="#select" title="Permalink to this headline">¶</a></h1>
+<p>Use <code class="xref py py-func docutils literal notranslate"><span class="pre">select()</span></code> of <a class="reference internal" href="api.html#sql_smith.QueryFactory" title="sql_smith.QueryFactory"><code class="xref py py-class docutils literal notranslate"><span class="pre">QueryFactory</span></code></a> to create a SELECT statement.
+The return value is an instance of <a class="reference internal" href="api.html#sql_smith.query.SelectQuery" title="sql_smith.query.SelectQuery"><code class="xref py py-class docutils literal notranslate"><span class="pre">SelectQuery</span></code></a>.</p>
+<div class="highlight-python notranslate"><div class="highlight"><pre><span></span><span class="n">factory</span> <span class="o">=</span> <span class="n">QueryFactory</span><span class="p">(</span><span class="n">CommonEngine</span><span class="p">())</span>
+<span class="n">query</span> <span class="o">=</span> <span class="n">factory</span> \
+    <span class="o">.</span><span class="n">select</span><span class="p">()</span> \
+    <span class="o">.</span><span class="n">from_</span><span class="p">(</span><span class="s1">&#39;users&#39;</span><span class="p">)</span> \
+    <span class="o">.</span><span class="n">limit</span><span class="p">(</span><span class="mi">100</span><span class="p">)</span> \
+    <span class="o">.</span><span class="n">compile</span><span class="p">()</span>
+
+<span class="nb">print</span><span class="p">(</span><span class="n">query</span><span class="o">.</span><span class="n">sql</span><span class="p">)</span>  <span class="c1"># SELECT * FROM &quot;users&quot; LIMIT 100</span>
+<span class="nb">print</span><span class="p">(</span><span class="n">query</span><span class="o">.</span><span class="n">params</span><span class="p">)</span>  <span class="c1"># ()</span>
+</pre></div>
+</div>
+<p>Specific columns can be selected:</p>
+<div class="highlight-python notranslate"><div class="highlight"><pre><span></span><span class="n">query</span> <span class="o">=</span> <span class="n">factory</span> \
+    <span class="o">.</span><span class="n">select</span><span class="p">(</span><span class="s1">&#39;id&#39;</span><span class="p">,</span> <span class="s1">&#39;username&#39;</span><span class="p">)</span> \
+    <span class="o">.</span><span class="n">from_</span><span class="p">(</span><span class="s1">&#39;users&#39;</span><span class="p">)</span> \
+    <span class="o">.</span><span class="n">compile</span><span class="p">()</span>
+
+<span class="nb">print</span><span class="p">(</span><span class="n">query</span><span class="o">.</span><span class="n">sql</span><span class="p">)</span>  <span class="c1"># SELECT &quot;id&quot;, &quot;username&quot; FROM &quot;users&quot;</span>
+<span class="nb">print</span><span class="p">(</span><span class="n">query</span><span class="o">.</span><span class="n">params</span><span class="p">)</span>  <span class="c1"># ()</span>
+</pre></div>
+</div>
+<p>additional columns can be added:</p>
+<div class="highlight-python notranslate"><div class="highlight"><pre><span></span><span class="n">query</span> <span class="o">=</span> <span class="n">factory</span> \
+    <span class="o">.</span><span class="n">select</span><span class="p">(</span><span class="s1">&#39;id&#39;</span><span class="p">,</span> <span class="s1">&#39;username&#39;</span><span class="p">)</span> \
+    <span class="o">.</span><span class="n">add_columns</span><span class="p">(</span><span class="s1">&#39;password&#39;</span><span class="p">)</span> \
+    <span class="o">.</span><span class="n">from_</span><span class="p">(</span><span class="s1">&#39;users&#39;</span><span class="p">)</span> \
+    <span class="o">.</span><span class="n">compile</span><span class="p">()</span>
+
+<span class="nb">print</span><span class="p">(</span><span class="n">query</span><span class="o">.</span><span class="n">sql</span><span class="p">)</span>  <span class="c1"># SELECT &quot;id&quot;, &quot;username&quot;, &quot;password&quot; FROM &quot;users&quot;</span>
+<span class="nb">print</span><span class="p">(</span><span class="n">query</span><span class="o">.</span><span class="n">params</span><span class="p">)</span>  <span class="c1"># ()</span>
+</pre></div>
+</div>
+<p>As well as additional tables:</p>
+<div class="highlight-python notranslate"><div class="highlight"><pre><span></span><span class="n">query</span> <span class="o">=</span> <span class="n">factory</span> \
+    <span class="o">.</span><span class="n">select</span><span class="p">(</span><span class="s1">&#39;users.username&#39;</span><span class="p">,</span> <span class="s1">&#39;groups.name&#39;</span><span class="p">)</span> \
+    <span class="o">.</span><span class="n">from_</span><span class="p">(</span><span class="s1">&#39;users&#39;</span><span class="p">)</span> \
+    <span class="o">.</span><span class="n">add_from</span><span class="p">(</span><span class="s1">&#39;groups&#39;</span><span class="p">)</span> \
+    <span class="o">.</span><span class="n">compile</span><span class="p">()</span>
+
+<span class="nb">print</span><span class="p">(</span><span class="n">query</span><span class="o">.</span><span class="n">sql</span><span class="p">)</span>  <span class="c1"># SELECT &quot;users&quot;.&quot;username&quot;, &quot;groups&quot;.&quot;name&quot; FROM &quot;users&quot;, &quot;groups&quot;</span>
+<span class="nb">print</span><span class="p">(</span><span class="n">query</span><span class="o">.</span><span class="n">params</span><span class="p">)</span>  <span class="c1"># ()</span>
+</pre></div>
+</div>
+<div class="section" id="where">
+<h2>WHERE<a class="headerlink" href="#where" title="Permalink to this headline">¶</a></h2>
+<p>Apply criteria to a WHERE condition:</p>
+<div class="highlight-python notranslate"><div class="highlight"><pre><span></span><span class="n">query</span> <span class="o">=</span> <span class="n">factory</span> \
+    <span class="o">.</span><span class="n">select</span><span class="p">()</span> \
+    <span class="o">.</span><span class="n">from_</span><span class="p">(</span><span class="s1">&#39;countries&#39;</span><span class="p">)</span> \
+    <span class="o">.</span><span class="n">where</span><span class="p">(</span><span class="n">field</span><span class="p">(</span><span class="s1">&#39;language&#39;</span><span class="p">)</span><span class="o">-&gt;</span><span class="n">eq</span><span class="p">(</span><span class="s1">&#39;EN&#39;</span><span class="p">))</span> \
+    <span class="o">.</span><span class="n">compile</span><span class="p">()</span>
+
+<span class="nb">print</span><span class="p">(</span><span class="n">query</span><span class="o">.</span><span class="n">sql</span><span class="p">)</span>  <span class="c1"># SELECT * FROM &quot;countries&quot; WHERE &quot;language&quot; = ?</span>
+<span class="nb">print</span><span class="p">(</span><span class="n">query</span><span class="o">.</span><span class="n">params</span><span class="p">)</span>  <span class="c1"># (&#39;EN&#39;, )</span>
+</pre></div>
+</div>
+<p>Additional criteria can be added using and_where and or_where</p>
+<div class="highlight-python notranslate"><div class="highlight"><pre><span></span><span class="n">query</span> <span class="o">=</span> <span class="n">factory</span> \
+    <span class="o">.</span><span class="n">select</span><span class="p">()</span> \
+    <span class="o">.</span><span class="n">from_</span><span class="p">(</span><span class="s1">&#39;users&#39;</span><span class="p">)</span> \
+    <span class="o">.</span><span class="n">where</span><span class="p">(</span><span class="n">field</span><span class="p">(</span><span class="s1">&#39;id&#39;</span><span class="p">)</span><span class="o">-&gt;</span><span class="n">gt</span><span class="p">(</span><span class="mi">1</span><span class="p">))</span> \
+    <span class="o">.</span><span class="n">or_where</span><span class="p">(</span><span class="n">field</span><span class="p">(</span><span class="s1">&#39;login_at&#39;</span><span class="p">)</span><span class="o">-&gt;</span><span class="n">is_null</span><span class="p">())</span> \
+    <span class="o">.</span><span class="n">or_where</span><span class="p">(</span><span class="n">field</span><span class="p">(</span><span class="s1">&#39;is_inactive&#39;</span><span class="p">)</span><span class="o">-&gt;</span><span class="n">eq</span><span class="p">(</span><span class="mi">1</span><span class="p">))</span> \
+    <span class="o">.</span><span class="n">compile</span><span class="p">()</span>
+
+<span class="nb">print</span><span class="p">(</span><span class="n">query</span><span class="o">.</span><span class="n">sql</span><span class="p">)</span>  <span class="c1"># SELECT * FROM &quot;users&quot; WHERE &quot;id&quot; &gt; ? OR &quot;login_at&quot; IS NULL OR &quot;is_inactive&quot; &gt; ?</span>
+<span class="nb">print</span><span class="p">(</span><span class="n">query</span><span class="o">.</span><span class="n">params</span><span class="p">)</span>  <span class="c1"># (1, 1)</span>
+</pre></div>
+</div>
+</div>
+<div class="section" id="join">
+<h2>JOIN<a class="headerlink" href="#join" title="Permalink to this headline">¶</a></h2>
+<p>Joins are added in a similar way:</p>
+<div class="highlight-python notranslate"><div class="highlight"><pre><span></span><span class="n">query</span> <span class="o">=</span> <span class="n">factory</span> \
+    <span class="o">.</span><span class="n">select</span><span class="p">(</span><span class="s1">&#39;u.id&#39;</span><span class="p">,</span> <span class="s1">&#39;c.name&#39;</span><span class="p">)</span> \
+    <span class="o">.</span><span class="n">from_</span><span class="p">(</span><span class="n">alias</span><span class="p">(</span><span class="s1">&#39;users&#39;</span><span class="p">,</span> <span class="s1">&#39;u&#39;</span><span class="p">))</span> \
+    <span class="o">.</span><span class="n">join</span><span class="p">(</span><span class="n">alias</span><span class="p">(</span><span class="s1">&#39;countries&#39;</span><span class="p">,</span> <span class="s1">&#39;c&#39;</span><span class="p">),</span> <span class="n">on</span><span class="p">(</span><span class="s1">&#39;u.country_id&#39;</span><span class="p">,</span> <span class="s1">&#39;c.id&#39;</span><span class="p">))</span> \
+    <span class="o">.</span><span class="n">compile</span><span class="p">()</span>
+
+<span class="nb">print</span><span class="p">(</span><span class="n">query</span><span class="o">.</span><span class="n">sql</span><span class="p">)</span>  <span class="c1"># SELECT * FROM &quot;users&quot; AS &quot;u&quot; JOIN &quot;countries&quot; AS &quot;c&quot; ON &quot;u&quot;.&quot;country_id&quot; = &quot;c&quot;.&quot;id&quot;</span>
+<span class="nb">print</span><span class="p">(</span><span class="n">query</span><span class="o">.</span><span class="n">params</span><span class="p">)</span>  <span class="c1"># ()</span>
+</pre></div>
+</div>
+<p>The join type can be specified as third parameter of join or one of these helpers can be used for
+common types:</p>
+<ul class="simple">
+<li><p>left_join</p></li>
+<li><p>right_join</p></li>
+<li><p>inner_join</p></li>
+<li><p>full_join</p></li>
+</ul>
+</div>
+<div class="section" id="order-by">
+<h2>ORDER BY<a class="headerlink" href="#order-by" title="Permalink to this headline">¶</a></h2>
+<p>Ordering can be applied:</p>
+<div class="highlight-python notranslate"><div class="highlight"><pre><span></span><span class="n">factory</span> <span class="o">=</span> <span class="n">QueryFactory</span><span class="p">(</span><span class="n">CommonEngine</span><span class="p">())</span>
+<span class="n">query</span> <span class="o">=</span> <span class="n">factory</span> \
+    <span class="o">.</span><span class="n">select</span><span class="p">()</span> \
+    <span class="o">.</span><span class="n">from_</span><span class="p">(</span><span class="s1">&#39;users&#39;</span><span class="p">)</span> \
+    <span class="o">.</span><span class="n">order_by</span><span class="p">(</span><span class="s1">&#39;username&#39;</span><span class="p">,</span> <span class="s1">&#39;asc&#39;</span><span class="p">)</span> \
+    <span class="o">.</span><span class="n">compile</span><span class="p">()</span>
+
+<span class="nb">print</span><span class="p">(</span><span class="n">query</span><span class="o">.</span><span class="n">sql</span><span class="p">)</span>  <span class="c1"># SELECT * FROM &quot;users&quot; ORDER BY &quot;username&quot; DESC</span>
+<span class="nb">print</span><span class="p">(</span><span class="n">query</span><span class="o">.</span><span class="n">params</span><span class="p">)</span>  <span class="c1"># ()</span>
+</pre></div>
+</div>
+<p>ordering can be reset by omitting the order column:</p>
+<div class="highlight-python notranslate"><div class="highlight"><pre><span></span><span class="n">query</span><span class="o">.</span><span class="n">order_by</span><span class="p">()</span>
+</pre></div>
+</div>
+</div>
+<div class="section" id="limit-and-offset">
+<h2>LIMIT and OFFSET<a class="headerlink" href="#limit-and-offset" title="Permalink to this headline">¶</a></h2>
+<p>Limits and offsets can be applied:</p>
+<div class="highlight-python notranslate"><div class="highlight"><pre><span></span><span class="n">factory</span> <span class="o">=</span> <span class="n">QueryFactory</span><span class="p">(</span><span class="n">CommonEngine</span><span class="p">())</span>
+<span class="n">query</span> <span class="o">=</span> <span class="n">factory</span> \
+    <span class="o">.</span><span class="n">select</span><span class="p">()</span> \
+    <span class="o">.</span><span class="n">from_</span><span class="p">(</span><span class="s1">&#39;posts&#39;</span><span class="p">)</span> \
+    <span class="o">.</span><span class="n">offset</span><span class="p">(</span><span class="mi">10</span><span class="p">)</span>
+    <span class="o">.</span><span class="n">limit</span><span class="p">(</span><span class="mi">10</span><span class="p">)</span>
+    <span class="o">.</span><span class="n">compile</span><span class="p">()</span>
+
+<span class="nb">print</span><span class="p">(</span><span class="n">query</span><span class="o">.</span><span class="n">sql</span><span class="p">)</span>  <span class="c1"># SELECT * FROM &quot;posts&quot; OFFSET 10 LIMIT 10</span>
+<span class="nb">print</span><span class="p">(</span><span class="n">query</span><span class="o">.</span><span class="n">params</span><span class="p">)</span>  <span class="c1"># ()</span>
+</pre></div>
+</div>
+<div class="admonition note">
+<p class="admonition-title">Note</p>
+<p>When using the SQL Server engine an offset must be defined for the limit to be applied! Use
+offset(0) when no offset is required.</p>
+</div>
+</div>
+<div class="section" id="group-by">
+<h2>GROUP BY<a class="headerlink" href="#group-by" title="Permalink to this headline">¶</a></h2>
+<p>Grouping can be applied:</p>
+<div class="highlight-python notranslate"><div class="highlight"><pre><span></span><span class="n">query</span> <span class="o">=</span> <span class="bp">self</span><span class="o">.</span><span class="n">_factory</span> \
+    <span class="o">.</span><span class="n">select</span><span class="p">(</span>
+        <span class="n">alias</span><span class="p">(</span><span class="n">func</span><span class="p">(</span><span class="s1">&#39;COUNT&#39;</span><span class="p">,</span> <span class="s1">&#39;id&#39;</span><span class="p">),</span> <span class="s1">&#39;total&#39;</span><span class="p">)</span>
+    <span class="p">)</span> \
+    <span class="o">.</span><span class="n">from_</span><span class="p">(</span><span class="s1">&#39;employees&#39;</span><span class="p">)</span> \
+    <span class="o">.</span><span class="n">group_by</span><span class="p">(</span><span class="s1">&#39;department&#39;</span><span class="p">)</span> \
+    <span class="o">.</span><span class="n">compile</span><span class="p">()</span>
+
+<span class="nb">print</span><span class="p">(</span><span class="n">query</span><span class="o">.</span><span class="n">sql</span><span class="p">)</span>  <span class="c1"># SELECT COUNT(&quot;id&quot;) AS &quot;total&quot; FROM &quot;employees&quot; GROUP BY &quot;department&quot;</span>
+<span class="nb">print</span><span class="p">(</span><span class="n">query</span><span class="o">.</span><span class="n">param</span><span class="p">)</span>  <span class="c1"># ()</span>
+</pre></div>
+</div>
+<p>And also the having clause can be applied:</p>
+<div class="highlight-python notranslate"><div class="highlight"><pre><span></span><span class="n">salary_sum</span> <span class="o">=</span> <span class="n">func</span><span class="p">(</span><span class="s1">&#39;SUM&#39;</span><span class="p">,</span> <span class="s1">&#39;salary&#39;</span><span class="p">)</span>
+<span class="n">query</span> <span class="o">=</span> <span class="bp">self</span><span class="o">.</span><span class="n">_factory</span> \
+    <span class="o">.</span><span class="n">select</span><span class="p">(</span>
+        <span class="s1">&#39;department&#39;</span><span class="p">,</span>
+        <span class="n">alias</span><span class="p">(</span><span class="n">salary_sum</span><span class="p">,</span> <span class="s1">&#39;total&#39;</span><span class="p">)</span>
+    <span class="p">)</span> \
+    <span class="o">.</span><span class="n">from_</span><span class="p">(</span><span class="s1">&#39;employees&#39;</span><span class="p">)</span> \
+    <span class="o">.</span><span class="n">group_by</span><span class="p">(</span><span class="s1">&#39;department&#39;</span><span class="p">)</span> \
+    <span class="o">.</span><span class="n">having</span><span class="p">(</span><span class="n">field</span><span class="p">(</span><span class="n">salary_sum</span><span class="p">)</span><span class="o">.</span><span class="n">gt</span><span class="p">(</span><span class="mi">5000</span><span class="p">))</span>
+
+    <span class="nb">print</span><span class="p">(</span><span class="n">query</span><span class="o">.</span><span class="n">sql</span><span class="p">)</span>  <span class="c1"># SELECT &quot;department&quot;, SUM(&quot;salary&quot;) AS &quot;total&quot; FROM &quot;employees&quot; GROUP BY &quot;department&quot; HAVING SUM(&quot;salary&quot;) &gt; ?</span>
+    <span class="nb">print</span><span class="p">(</span><span class="n">query</span><span class="o">.</span><span class="n">params</span><span class="p">)</span>  <span class="c1"># (5000, )</span>
+</pre></div>
+</div>
+</div>
+</div>
+
+
+          </div>
+          
+        </div>
+      </div>
+      <div class="sphinxsidebar" role="navigation" aria-label="main navigation">
+        <div class="sphinxsidebarwrapper">
+<h1 class="logo"><a href="index.html">sql-smith</a></h1>
+
+
+
+
+
+
+
+
+<h3>Navigation</h3>
+<ul class="current">
+<li class="toctree-l1"><a class="reference internal" href="installation.html">Installation</a></li>
+<li class="toctree-l1"><a class="reference internal" href="quickstart.html">Quick Start</a></li>
+<li class="toctree-l1 current"><a class="reference internal" href="queries.html">Queries</a><ul class="current">
+<li class="toctree-l2 current"><a class="current reference internal" href="#">SELECT</a></li>
+<li class="toctree-l2"><a class="reference internal" href="insert.html">INSERT</a></li>
+<li class="toctree-l2"><a class="reference internal" href="update.html">UPDATE</a></li>
+<li class="toctree-l2"><a class="reference internal" href="delete.html">DELETE</a></li>
+</ul>
+</li>
+<li class="toctree-l1"><a class="reference internal" href="functions.html">Reference</a></li>
+<li class="toctree-l1"><a class="reference internal" href="api.html">API</a></li>
+<li class="toctree-l1"><a class="reference internal" href="difference.html">Latitude vs sql-smith</a></li>
+</ul>
+
+<div class="relations">
+<h3>Related Topics</h3>
+<ul>
+  <li><a href="index.html">Documentation overview</a><ul>
+  <li><a href="queries.html">Queries</a><ul>
+      <li>Previous: <a href="queries.html" title="previous chapter">Queries</a></li>
+      <li>Next: <a href="insert.html" title="next chapter">INSERT</a></li>
+  </ul></li>
+  </ul></li>
+</ul>
+</div>
+<div id="searchbox" style="display: none" role="search">
+  <h3 id="searchlabel">Quick search</h3>
+    <div class="searchformwrapper">
+    <form class="search" action="search.html" method="get">
+      <input type="text" name="q" aria-labelledby="searchlabel" />
+      <input type="submit" value="Go" />
+    </form>
+    </div>
+</div>
+<script>$('#searchbox').show(0);</script>
+
+
+
+
+
+
+
+
+        </div>
+      </div>
+      <div class="clearer"></div>
+    </div>
+    <div class="footer">
+      &copy;.
+      
+      |
+      Powered by <a href="http://sphinx-doc.org/">Sphinx 3.5.4</a>
+      &amp; <a href="https://github.com/bitprophet/alabaster">Alabaster 0.7.12</a>
+      
+    </div>
+
+    
+
+    
+  </body>
+</html>

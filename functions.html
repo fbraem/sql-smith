@@ -1,0 +1,232 @@
+
+<!DOCTYPE html>
+
+<html>
+  <head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Reference &#8212; sql-smith  documentation</title>
+    <link rel="stylesheet" href="_static/pygments.css" type="text/css" />
+    <link rel="stylesheet" href="_static/alabaster.css" type="text/css" />
+    <link rel="stylesheet" type="text/css" href="_static/custom.css" />
+    <script id="documentation_options" data-url_root="./" src="_static/documentation_options.js"></script>
+    <script src="_static/jquery.js"></script>
+    <script src="_static/underscore.js"></script>
+    <script src="_static/doctools.js"></script>
+    <link rel="index" title="Index" href="genindex.html" />
+    <link rel="search" title="Search" href="search.html" />
+    <link rel="next" title="API" href="api.html" />
+    <link rel="prev" title="DELETE" href="delete.html" />
+   
+  <link rel="stylesheet" href="_static/custom.css" type="text/css" />
+  
+  
+  <meta name="viewport" content="width=device-width, initial-scale=0.9, maximum-scale=0.9" />
+
+  </head><body>
+  
+
+    <div class="document">
+      <div class="documentwrapper">
+        <div class="bodywrapper">
+          
+
+          <div class="body" role="main">
+            
+  <div class="section" id="reference">
+<h1>Reference<a class="headerlink" href="#reference" title="Permalink to this headline">¶</a></h1>
+<p>All the following functions are defined in the functions module.</p>
+<div class="section" id="criteria">
+<h2>Criteria<a class="headerlink" href="#criteria" title="Permalink to this headline">¶</a></h2>
+<div class="section" id="field">
+<h3>field<a class="headerlink" href="#field" title="Permalink to this headline">¶</a></h3>
+<p>Use <a class="reference internal" href="api.html#sql_smith.functions.field" title="sql_smith.functions.field"><code class="xref py py-func docutils literal notranslate"><span class="pre">field()</span></code></a> when a column is needed in a criteria.</p>
+<div class="highlight-python notranslate"><div class="highlight"><pre><span></span><span class="n">field</span><span class="p">(</span><span class="s1">&#39;users.id&#39;</span><span class="p">)</span><span class="o">.</span><span class="n">eq</span><span class="p">(</span><span class="mi">100</span><span class="p">)</span>  <span class="c1"># &quot;users&quot;.id = ?</span>
+<span class="n">field</span><span class="p">(</span><span class="s1">&#39;users.birthday&#39;</span><span class="p">)</span><span class="o">.</span><span class="n">lt</span><span class="p">(</span><span class="s1">&#39;2000-01-01&#39;</span><span class="p">)</span>  <span class="c1"># &quot;users&quot;.&quot;birthday&quot; &gt; ?</span>
+<span class="n">field</span><span class="p">(</span><span class="s1">&#39;users.last_login&#39;</span><span class="p">)</span><span class="o">.</span><span class="n">between</span><span class="p">(</span><span class="n">yesterday</span><span class="p">,</span> <span class="n">today</span><span class="p">)</span>  <span class="c1"># &quot;users&quot;.&quot;last_login&quot; BETWEEN ? AND ?</span>
+<span class="n">field</span><span class="p">(</span><span class="s1">&#39;users.role&#39;</span><span class="p">)</span><span class="o">.</span><span class="n">not_in</span><span class="p">(</span><span class="s1">&#39;admin&#39;</span><span class="p">,</span> <span class="s1">&#39;moderator&#39;</span><span class="p">)</span>  <span class="c1"># &quot;users&quot;.&quot;role&quot; NOT IN (?, ?)</span>
+<span class="n">field</span><span class="p">(</span><span class="s1">&#39;countries.id&#39;</span><span class="p">)</span><span class="o">.</span><span class="n">in_</span><span class="p">(</span><span class="n">select</span><span class="p">)</span>  <span class="c1"># &quot;countries&quot;.&quot;id&quot; IN (?)</span>
+<span class="n">field</span><span class="p">(</span><span class="s1">&#39;total&#39;</span><span class="p">)</span><span class="o">.</span><span class="n">gt</span><span class="p">(</span><span class="mi">9000</span><span class="p">)</span>  <span class="c1"># &quot;total&quot; &gt; ?</span>
+<span class="n">field</span><span class="p">(</span><span class="s1">&#39;salary&#39;</span><span class="p">)</span><span class="o">.</span><span class="n">lte</span><span class="p">(</span><span class="mi">3000</span><span class="p">)</span>  <span class="c1"># &quot;salary&quot; &lt;= ?</span>
+<span class="n">field</span><span class="p">(</span><span class="s1">&#39;deleted_at&#39;</span><span class="p">)</span><span class="o">.</span><span class="n">is_null</span><span class="p">()</span>  <span class="c1"># &quot;deleted_at&quot; IS NULL</span>
+<span class="n">field</span><span class="p">(</span><span class="s1">&#39;parent_id&#39;</span><span class="p">)</span><span class="o">.</span><span class="n">is_not_null</span><span class="p">()</span>  <span class="c1"># &quot;parent_id&quot; IS NOT NULL</span>
+</pre></div>
+</div>
+</div>
+<div class="section" id="search">
+<h3>search<a class="headerlink" href="#search" title="Permalink to this headline">¶</a></h3>
+<p>Use <a class="reference internal" href="api.html#sql_smith.functions.search" title="sql_smith.functions.search"><code class="xref py py-func docutils literal notranslate"><span class="pre">search()</span></code></a> for LIKE.</p>
+<div class="highlight-python notranslate"><div class="highlight"><pre><span></span><span class="n">search</span><span class="p">(</span><span class="s1">&#39;username&#39;</span><span class="p">)</span><span class="o">.</span><span class="n">contains</span><span class="p">(</span><span class="s1">&#39;admin&#39;</span><span class="p">)</span>  <span class="c1"># &quot;username&quot; LIKE &#39;%admin%&#39;</span>
+<span class="n">search</span><span class="p">(</span><span class="s1">&#39;first_name&#39;</span><span class="p">)</span><span class="o">.</span><span class="n">begins</span><span class="p">(</span><span class="s1">&#39;john&#39;</span><span class="p">)</span>  <span class="c1"># &quot;firstname&quot; LIKE &#39;john%&#39;</span>
+<span class="n">search</span><span class="p">(</span><span class="s1">&#39;last_name&#39;</span><span class="p">)</span><span class="o">.</span><span class="n">not_ends</span><span class="p">(</span><span class="s1">&#39;rump&#39;</span><span class="p">)</span>  <span class="c1"># &quot;last_name&quot; NOT LIKE &#39;%rump&#39;</span>
+</pre></div>
+</div>
+</div>
+<div class="section" id="on">
+<h3>on<a class="headerlink" href="#on" title="Permalink to this headline">¶</a></h3>
+<p><a class="reference internal" href="api.html#sql_smith.functions.on" title="sql_smith.functions.on"><code class="xref py py-func docutils literal notranslate"><span class="pre">on()</span></code></a> can be used in conjunction with join.</p>
+<div class="highlight-python notranslate"><div class="highlight"><pre><span></span><span class="n">on</span><span class="p">(</span><span class="s1">&#39;countries.id&#39;</span><span class="p">,</span> <span class="s1">&#39;users.country_id&#39;</span><span class="p">)</span>  <span class="c1"># &quot;countries&quot;.&quot;id&quot; = &quot;users&quot;.&quot;country_id&quot;</span>
+</pre></div>
+</div>
+</div>
+<div class="section" id="group">
+<h3>group<a class="headerlink" href="#group" title="Permalink to this headline">¶</a></h3>
+<p>Use <a class="reference internal" href="api.html#sql_smith.functions.group" title="sql_smith.functions.group"><code class="xref py py-func docutils literal notranslate"><span class="pre">group()</span></code></a> to combine criteria</p>
+<div class="highlight-python notranslate"><div class="highlight"><pre><span></span><span class="n">group</span><span class="p">(</span>
+    <span class="n">field</span><span class="p">(</span><span class="s1">&#39;username&#39;</span><span class="p">)</span><span class="o">.</span><span class="n">eq</span><span class="p">(</span><span class="s1">&#39;tom&#39;</span><span class="p">)</span> \
+    <span class="o">.</span><span class="n">or_</span><span class="p">(</span><span class="n">field</span><span class="p">(</span><span class="s1">&#39;first_name&#39;</span><span class="p">)</span><span class="o">.</span><span class="n">eq</span><span class="p">(</span><span class="s1">&#39;Tom&#39;</span><span class="p">))</span>
+<span class="p">)</span><span class="o">.</span><span class="n">and_</span><span class="p">(</span>
+    <span class="n">field</span><span class="p">(</span><span class="s1">&#39;is_active&#39;</span><span class="p">)</span><span class="o">.</span><span class="n">eq</span><span class="p">(</span><span class="mi">1</span><span class="p">)</span>
+<span class="p">)</span>
+<span class="c1"># (&quot;username&quot; = ? OR &quot;first_name&quot; = ?) AND &quot;is_active&quot; = ?</span>
+</pre></div>
+</div>
+</div>
+</div>
+<div class="section" id="expressions">
+<h2>Expressions<a class="headerlink" href="#expressions" title="Permalink to this headline">¶</a></h2>
+<div class="section" id="express">
+<h3>express<a class="headerlink" href="#express" title="Permalink to this headline">¶</a></h3>
+<p><a class="reference internal" href="api.html#sql_smith.functions.express" title="sql_smith.functions.express"><code class="xref py py-func docutils literal notranslate"><span class="pre">express()</span></code></a> creates an expression. All expressions are written with the print format.
+Any {} will be replaced with anything that implement the StatementInterface (like queries and other expressions).</p>
+<div class="highlight-python notranslate"><div class="highlight"><pre><span></span><span class="n">express</span><span class="p">(</span><span class="s1">&#39;</span><span class="si">{}</span><span class="s1"> &lt;= NOW()&#39;</span><span class="p">,</span> <span class="n">identify</span><span class="p">(</span><span class="s1">&#39;execute_at&#39;</span><span class="p">))</span>  <span class="c1">#  &quot;execute_at&quot; &lt;= NOW()</span>
+<span class="n">express</span><span class="p">(</span><span class="s1">&#39;</span><span class="si">{}</span><span class="s1"> + 1&#39;</span><span class="p">,</span> <span class="n">identify</span><span class="p">(</span><span class="s1">&#39;number_of_views&#39;</span><span class="p">))</span>  <span class="c1"># &quot;number_of_views&quot; + 1</span>
+</pre></div>
+</div>
+</div>
+</div>
+<div class="section" id="aliases">
+<h2>Aliases<a class="headerlink" href="#aliases" title="Permalink to this headline">¶</a></h2>
+<div class="section" id="alias">
+<h3>alias<a class="headerlink" href="#alias" title="Permalink to this headline">¶</a></h3>
+<p><a class="reference internal" href="api.html#sql_smith.functions.alias" title="sql_smith.functions.alias"><code class="xref py py-func docutils literal notranslate"><span class="pre">alias()</span></code></a> creates an alias for a column or an expression.</p>
+<div class="highlight-python notranslate"><div class="highlight"><pre><span></span><span class="n">alias</span><span class="p">(</span><span class="s1">&#39;users.id&#39;</span><span class="p">,</span> <span class="s1">&#39;uid&#39;</span><span class="p">)</span>  <span class="c1"># &quot;users&quot;.&quot;id&quot; AS &quot;uid&quot;</span>
+</pre></div>
+</div>
+</div>
+</div>
+<div class="section" id="functions">
+<h2>Functions<a class="headerlink" href="#functions" title="Permalink to this headline">¶</a></h2>
+<div class="section" id="func">
+<h3>func<a class="headerlink" href="#func" title="Permalink to this headline">¶</a></h3>
+<p>Use <a class="reference internal" href="api.html#sql_smith.functions.func" title="sql_smith.functions.func"><code class="xref py py-func docutils literal notranslate"><span class="pre">func()</span></code></a> for functions.</p>
+<div class="highlight-python notranslate"><div class="highlight"><pre><span></span><span class="n">func</span><span class="p">(</span><span class="s1">&#39;COUNT&#39;</span><span class="p">,</span> <span class="s1">&#39;user.id&#39;</span><span class="p">)</span>  <span class="c1"># COUNT(&quot;users&quot;.&quot;id&quot;)</span>
+<span class="n">func</span><span class="p">(</span><span class="s1">&#39;CONCAT&#39;</span><span class="p">,</span> <span class="s1">&#39;first_name&#39;</span><span class="p">,</span> <span class="s1">&#39;last_name&#39;</span><span class="p">)</span>  <span class="c1"># CONCAT(&quot;first_name&quot;, &quot;last_name&quot;)</span>
+</pre></div>
+</div>
+<p>By default functions assume identifiers as parameters, use param for scalar values:</p>
+<div class="highlight-python notranslate"><div class="highlight"><pre><span></span><span class="n">func</span><span class="p">(</span><span class="s1">&#39;POINT&#39;</span><span class="p">,</span> <span class="n">param</span><span class="p">(</span><span class="mi">1</span><span class="p">),</span> <span class="n">param</span><span class="p">(</span><span class="mi">2</span><span class="p">))</span>  <span class="c1"># POINT(? , ?)</span>
+</pre></div>
+</div>
+</div>
+</div>
+<div class="section" id="identifiers">
+<h2>Identifiers<a class="headerlink" href="#identifiers" title="Permalink to this headline">¶</a></h2>
+<div class="section" id="identifier">
+<h3>identifier<a class="headerlink" href="#identifier" title="Permalink to this headline">¶</a></h3>
+<p><a class="reference internal" href="api.html#sql_smith.functions.identify" title="sql_smith.functions.identify"><code class="xref py py-func docutils literal notranslate"><span class="pre">identify()</span></code></a> is used to create an identifier.</p>
+<div class="highlight-python notranslate"><div class="highlight"><pre><span></span><span class="n">identify</span><span class="p">(</span><span class="s1">&#39;users.username&#39;</span><span class="p">)</span>  <span class="c1"># &quot;users&quot;.&quot;username&quot;</span>
+<span class="n">identify</span><span class="p">(</span><span class="s1">&#39;country&#39;</span><span class="p">)</span>  <span class="c1"># &quot;country&quot;</span>
+</pre></div>
+</div>
+</div>
+<div class="section" id="identifier-all">
+<h3>identifier_all<a class="headerlink" href="#identifier-all" title="Permalink to this headline">¶</a></h3>
+<p><code class="xref py py-func docutils literal notranslate"><span class="pre">identifier_all()</span></code> creates a tuple of identifiers.</p>
+<div class="highlight-python notranslate"><div class="highlight"><pre><span></span><span class="n">identify_all</span><span class="p">(</span><span class="s1">&#39;id&#39;</span><span class="p">,</span> <span class="s1">&#39;username&#39;</span><span class="p">)</span>  <span class="c1"># (&quot;id&quot;, &quot;username&quot;)</span>
+</pre></div>
+</div>
+</div>
+</div>
+<div class="section" id="lists">
+<h2>Lists<a class="headerlink" href="#lists" title="Permalink to this headline">¶</a></h2>
+<div class="section" id="listing">
+<h3>listing<a class="headerlink" href="#listing" title="Permalink to this headline">¶</a></h3>
+<p><a class="reference internal" href="api.html#sql_smith.functions.listing" title="sql_smith.functions.listing"><code class="xref py py-func docutils literal notranslate"><span class="pre">listing()</span></code></a> is used to create a list of parameters or identifiers.</p>
+<div class="highlight-python notranslate"><div class="highlight"><pre><span></span><span class="n">listing</span><span class="p">((</span><span class="mi">1</span><span class="p">,</span> <span class="mi">1</span><span class="p">,</span> <span class="mi">2</span><span class="p">,</span> <span class="mi">3</span><span class="p">,</span> <span class="mi">5</span><span class="p">))</span>  <span class="c1"># ?, ?, ?, ?, ?</span>
+<span class="n">listing</span><span class="p">(</span><span class="n">identify_all</span><span class="p">(</span><span class="s1">&#39;id&#39;</span><span class="p">,</span> <span class="s1">&#39;username&#39;</span><span class="p">,</span> <span class="s1">&#39;email&#39;</span><span class="p">))</span>  <span class="c1"># &quot;id&quot;, &quot;username&quot;, &quot;email&quot;</span>
+</pre></div>
+</div>
+</div>
+</div>
+</div>
+
+
+          </div>
+          
+        </div>
+      </div>
+      <div class="sphinxsidebar" role="navigation" aria-label="main navigation">
+        <div class="sphinxsidebarwrapper">
+<h1 class="logo"><a href="index.html">sql-smith</a></h1>
+
+
+
+
+
+
+
+
+<h3>Navigation</h3>
+<ul class="current">
+<li class="toctree-l1"><a class="reference internal" href="installation.html">Installation</a></li>
+<li class="toctree-l1"><a class="reference internal" href="quickstart.html">Quick Start</a></li>
+<li class="toctree-l1"><a class="reference internal" href="queries.html">Queries</a></li>
+<li class="toctree-l1 current"><a class="current reference internal" href="#">Reference</a><ul>
+<li class="toctree-l2"><a class="reference internal" href="#criteria">Criteria</a></li>
+<li class="toctree-l2"><a class="reference internal" href="#expressions">Expressions</a></li>
+<li class="toctree-l2"><a class="reference internal" href="#aliases">Aliases</a></li>
+<li class="toctree-l2"><a class="reference internal" href="#functions">Functions</a></li>
+<li class="toctree-l2"><a class="reference internal" href="#identifiers">Identifiers</a></li>
+<li class="toctree-l2"><a class="reference internal" href="#lists">Lists</a></li>
+</ul>
+</li>
+<li class="toctree-l1"><a class="reference internal" href="api.html">API</a></li>
+<li class="toctree-l1"><a class="reference internal" href="difference.html">Latitude vs sql-smith</a></li>
+</ul>
+
+<div class="relations">
+<h3>Related Topics</h3>
+<ul>
+  <li><a href="index.html">Documentation overview</a><ul>
+      <li>Previous: <a href="delete.html" title="previous chapter">DELETE</a></li>
+      <li>Next: <a href="api.html" title="next chapter">API</a></li>
+  </ul></li>
+</ul>
+</div>
+<div id="searchbox" style="display: none" role="search">
+  <h3 id="searchlabel">Quick search</h3>
+    <div class="searchformwrapper">
+    <form class="search" action="search.html" method="get">
+      <input type="text" name="q" aria-labelledby="searchlabel" />
+      <input type="submit" value="Go" />
+    </form>
+    </div>
+</div>
+<script>$('#searchbox').show(0);</script>
+
+
+
+
+
+
+
+
+        </div>
+      </div>
+      <div class="clearer"></div>
+    </div>
+    <div class="footer">
+      &copy;.
+      
+      |
+      Powered by <a href="http://sphinx-doc.org/">Sphinx 3.5.4</a>
+      &amp; <a href="https://github.com/bitprophet/alabaster">Alabaster 0.7.12</a>
+      
+    </div>
+
+    
+
+    
+  </body>
+</html>
