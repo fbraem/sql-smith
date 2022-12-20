@@ -69,3 +69,6 @@ class BasicEngine(EngineInterface):
     def flatten_sql(self, separator: str, *args: 'StatementInterface') -> str:
         """Transform StatementInterface arguments to a string."""
         return separator.join(list(map(self.extract_sql(), args)))
+
+    def get_parameter_placeholder(self):
+        return '?'

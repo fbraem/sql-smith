@@ -36,7 +36,7 @@ class MysqlEngineTests(SqlTestCase):
         criteria = field('active').eq('yes')
         sql = criteria.sql(self._engine)
         params = criteria.params(self._engine)
-        self.assertEqual('`active` = ?', sql)
+        self.assertEqual('`active` = %s', sql)
         self.assertEqual(('yes', ), params)
 
 

@@ -14,7 +14,7 @@ class PostgresInsertTests(SqlTestCase):
             .insert('users', {'username': 'james'}) \
             .returning('id')
 
-        self.assertSql('INSERT INTO "users" ("username") VALUES (?) RETURNING "id"', insert)
+        self.assertSql('INSERT INTO "users" ("username") VALUES (%s) RETURNING "id"', insert)
         self.assertParams(('james', ), insert)
 
 

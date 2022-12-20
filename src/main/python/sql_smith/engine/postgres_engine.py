@@ -17,3 +17,6 @@ class PostgresEngine(CommonEngine):
         The Postgres update query supports RETURNING.
         """
         return UpdateQuery(self)
+
+    def get_parameter_placeholder(self):
+        return '%s'

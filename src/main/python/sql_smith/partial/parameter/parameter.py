@@ -5,8 +5,6 @@ from sql_smith.interfaces import StatementInterface
 
 
 class Parameter(StatementInterface):
-    SQL = '?'
-
     def __init__(self, value: Union[str, int, float]):
         self._params = (value, )
 
@@ -20,7 +18,7 @@ class Parameter(StatementInterface):
         return Parameter(value)
 
     def sql(self, engine: 'EngineInterface') -> str:
-        return engine.export_parameter(self.SQL)
+        return engine.export_parameter(engine.get_parameter_placeholder())
 
     def params(self, engine: 'EngineInterface') -> Tuple:
         return self._params

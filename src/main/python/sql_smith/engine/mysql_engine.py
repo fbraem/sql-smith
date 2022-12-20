@@ -21,3 +21,6 @@ class MysqlEngine(BasicEngine):
     def escape_identifier(self, identifier: str) -> str:
         """Escapes the identifier by surrounding it with backticks."""
         return '`{}`'.format(identifier)
+
+    def get_parameter_placeholder(self):
+        return '%s'

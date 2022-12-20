@@ -46,3 +46,7 @@ class EngineInterface:
     @abstractmethod
     def export_parameter(self, param) -> str:
         raise NotImplementedError('Must override export_parameter')
+
+    @abstractmethod
+    def get_parameter_placeholder(self) -> str:
+        raise NotImplementedError('Must override get_parameter')

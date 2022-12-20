@@ -14,7 +14,7 @@ class MySqlInsertTests(SqlTestCase):
             .insert('users', {'username': 'james'}) \
             .ignore(True)
 
-        self.assertSql('INSERT IGNORE INTO `users` (`username`) VALUES (?)', insert)
+        self.assertSql('INSERT IGNORE INTO `users` (`username`) VALUES (%s)', insert)
         self.assertParams(('james', ), insert)
 
 
