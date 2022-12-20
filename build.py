@@ -10,7 +10,7 @@ use_plugin("python.distutils")
 
 
 name = "sql-smith"
-version = "1.0.0"
+version = "1.0.1"
 
 summary = "sql-smith is an SQL query builder with zero dependencies and a fluent interface."
 url = "https://github.com/fbraem/sql-smith"
