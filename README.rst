@@ -51,4 +51,9 @@ with two properties: sql and params. Use these properties to pass the query to a
     for row in cur.execute(query.sql, query.params):
         print(row)
 
+Acknowledgment
+==============
+Big thanks to JetBrains_ to let me use PyCharm for free!
+
 .. _Latitude: https://latitude.shadowhand.com/
+.. _JetBrains: https://www.jetbrains.com/pycharm/
