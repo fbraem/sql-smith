@@ -1,8 +1,8 @@
 import unittest
 
-from sql_smith.engine import SqlServerEngine
+from sql_smith.engine.sql_server_engine import SqlServerEngine
 from sql_smith.functions import identify, search
-from sql_test_case import SqlTestCase
+from .sql_test_case import SqlTestCase
 
 
 class SqlServerEngineTests(SqlTestCase):

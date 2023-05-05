@@ -1,8 +1,8 @@
 import unittest
 
-from sql_smith.engine import PostgresEngine
+from sql_smith.engine.postgres_engine import PostgresEngine
 from sql_smith.functions import identify
-from sql_test_case import SqlTestCase
+from .sql_test_case import SqlTestCase
 
 
 class PostgresEngineTests(SqlTestCase):

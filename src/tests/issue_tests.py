@@ -1,7 +1,7 @@
 import unittest
 
 from sql_smith.functions import func, param
-from sql_test_case import SqlTestCase
+from .sql_test_case import SqlTestCase
 
 
 class IssueTests(SqlTestCase):

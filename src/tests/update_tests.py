@@ -1,7 +1,7 @@
 import unittest
 
 from sql_smith.functions import field
-from sql_test_case import SqlTestCase
+from .sql_test_case import SqlTestCase
 
 
 class UpdateTests(SqlTestCase):

@@ -1,7 +1,7 @@
 import unittest
 
-from sql_smith.engine import MysqlEngine
-from sql_test_case import SqlTestCase
+from sql_smith.engine.mysql_engine import MysqlEngine
+from .sql_test_case import SqlTestCase
 
 
 class MySqlSelectTests(SqlTestCase):

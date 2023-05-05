@@ -1,6 +1,6 @@
 import unittest
 from sql_smith.functions import field, group
-from sql_test_case import SqlTestCase
+from .sql_test_case import SqlTestCase
 
 
 class CriteriaTests(SqlTestCase):

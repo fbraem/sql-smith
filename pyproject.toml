@@ -1,3 +1,16 @@
+[tool.poetry]
+name = "sql-smith"
+version = "1.0.2"
+description = "sql-smith is an SQL query builder with zero dependencies and a fluent interface."
+authors = ["fbraem <franky.braem@gmail.com>"]
+license = "MIT"
+readme = "README.md"
+packages = [{include = "sql_smith"}]
+
+[tool.poetry.dependencies]
+python = "^3.10"
+
+
 [build-system]
-requires = ["pybuilder>=0.12.0"]
-build-backend = "pybuilder.pep517"
+requires = ["poetry-core"]
+build-backend = "poetry.core.masonry.api"

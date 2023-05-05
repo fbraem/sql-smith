@@ -1,7 +1,7 @@
 import unittest
 from typing import Tuple
 
-from sql_smith.engine import BasicEngine
+from sql_smith.engine.basic_engine import BasicEngine
 from sql_smith.query_factory import QueryFactory
 from sql_smith.interfaces.query_interface import QueryInterface
 

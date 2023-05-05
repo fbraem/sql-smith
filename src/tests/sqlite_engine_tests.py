@@ -1,8 +1,8 @@
 import unittest
 
-from sql_smith.engine import SqliteEngine
+from sql_smith.engine.sqlite_engine import SqliteEngine
 from sql_smith.functions import identify, field
-from sql_test_case import SqlTestCase
+from .sql_test_case import SqlTestCase
 
 
 class SqliteEngineTests(SqlTestCase):

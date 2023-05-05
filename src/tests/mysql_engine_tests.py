@@ -1,8 +1,8 @@
 import unittest
 
-from sql_smith.engine import MysqlEngine
+from sql_smith.engine.mysql_engine import MysqlEngine
 from sql_smith.functions import identify, field
-from sql_test_case import SqlTestCase
+from .sql_test_case import SqlTestCase
 
 
 class MysqlEngineTests(SqlTestCase):

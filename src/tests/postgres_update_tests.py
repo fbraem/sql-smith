@@ -1,7 +1,7 @@
 import unittest
 
-from sql_smith.engine import PostgresEngine
-from sql_test_case import SqlTestCase
+from sql_smith.engine.postgres_engine import PostgresEngine
+from .sql_test_case import SqlTestCase
 
 
 class PostgresUpdateTests(SqlTestCase):

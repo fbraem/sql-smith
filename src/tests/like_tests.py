@@ -1,7 +1,7 @@
 import unittest
 
 from sql_smith.functions import search
-from sql_test_case import SqlTestCase
+from .sql_test_case import SqlTestCase
 
 
 class LikeTests(SqlTestCase):

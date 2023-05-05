@@ -1,6 +1,6 @@
 import unittest
 from sql_smith.functions import identify, alias
-from sql_test_case import SqlTestCase
+from .sql_test_case import SqlTestCase
 
 
 class IdentifierTests(SqlTestCase):

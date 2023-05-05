@@ -1,7 +1,7 @@
 import unittest
 
-from sql_smith.engine import SqlServerEngine
-from sql_test_case import SqlTestCase
+from sql_smith.engine.sql_server_engine import SqlServerEngine
+from .sql_test_case import SqlTestCase
 
 
 class SqlServerDeleteTests(SqlTestCase):
