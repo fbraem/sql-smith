@@ -114,7 +114,10 @@ class SelectQuery(
 
     def as_expression(self) -> "ExpressionInterface":
         if len(self._cte) > 0:
-            query = express("WITH")
+            if self._cte_recursive:
+                query = express("WITH RECURSIVE")
+            else:
+                query = express("WITH")
             query = self.__apply_with(query)
             query = query.append("SELECT")
         else:
