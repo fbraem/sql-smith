@@ -5,10 +5,10 @@ from sql_smith.capability import (
     HasOffsetMixin,
     HasOrderByMixin,
     CanUnionMixin,
-    HasCteMixin,
 )
 from sql_smith.functions import identify_all, express, listing, identify
 from .abstract_query import AbstractQuery
+from ..interfaces import ExpressionInterface
 
 
 class SelectQuery(
@@ -18,7 +18,6 @@ class SelectQuery(
     HasWhereMixin,
     HasLimitMixin,
     HasOffsetMixin,
-    HasCteMixin,
     AbstractQuery,
 ):
     """Implements a SELECT query."""
@@ -38,6 +37,7 @@ class SelectQuery(
         self._having = None
 
         self._cte = {}
+        self._cte_recursive = False
 
     def distinct(self, state: bool = True) -> "SelectQuery":
         """Add or remove DISTINCT."""
@@ -88,10 +88,34 @@ class SelectQuery(
         self._having = criteria
         return self
 
+    def with_(
+        self,
+        name: str | None = None,
+        query: ExpressionInterface | None = None,
+        recursive: bool = False,
+    ) -> "SelectQuery":
+        """Add a query as CTE.
+
+        When no name and query is passed, all CTE's for this query will be removed.
+        When no query is passed, the CTE with the given name will be removed.
+        """
+        if name is None:
+            self._cte = {}
+            return self
+
+        if query is None:
+            del self._cte[name]
+            return self
+
+        self._cte[name] = query
+        self._cte_recursive = recursive
+
+        return self
+
     def as_expression(self) -> "ExpressionInterface":
         if len(self._cte) > 0:
             query = express("WITH")
-            query = self._apply_with(query)
+            query = self.__apply_with(query)
             query = query.append("SELECT")
         else:
             query = self.start_expression()
@@ -136,3 +160,9 @@ class SelectQuery(
 
     def __apply_having(self, query: "ExpressionInterface") -> "ExpressionInterface":
         return query.append("HAVING {}", self._having) if self._having else query
+
+    def __apply_with(self, query: "ExpressionInterface") -> "ExpressionInterface":
+        if len(self._cte) > 0:
+            for name, cte_query in self._cte.items():
+                query = query.append(name + " AS ({})", cte_query)
+        return query
