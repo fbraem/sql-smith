@@ -4,12 +4,27 @@ version = "1.0.2"
 description = "sql-smith is an SQL query builder with zero dependencies and a fluent interface."
 authors = ["fbraem <franky.braem@gmail.com>"]
 license = "MIT"
-readme = "README.md"
-packages = [{include = "sql_smith"}]
+readme = "README.rst"
+classifiers = [
+    "License :: OSI Approved :: MIT License",
+    "Development Status :: 5 - Production/Stable",
+    "Intended Audience :: Developers",
+    "Programming Language :: Python :: 3",
+    "Programming Language :: Python :: 3.10",
+    "Topic :: Software Development :: Libraries :: Python Modules",
+    "Operating System :: OS Independent",
+]
+keywords = [
+    "sql-smith", "query", "builder", "querybuilder", "sql", "mysql", "sqlite", "postgres", "sqlserver", "database"
+]
 
 [tool.poetry.dependencies]
 python = "^3.10"
 
+[tool.poetry.group.dev.dependencies]
+black = {extras = ["d"], version = "^23.3.0"}
+sphinx = "^6.0.0"
+sphinx-rtd-theme = "^1.2.0"
 
 [build-system]
 requires = ["poetry-core"]
