@@ -1,7 +1,12 @@
-from typing import Tuple, Union, List
-
 from sql_smith.interfaces import ExpressionInterface, StatementInterface
-from sql_smith.partial import Expression, QualifiedIdentifier, Identifier, Literal, Listing, Criteria
+from sql_smith.partial import (
+    Expression,
+    QualifiedIdentifier,
+    Identifier,
+    Literal,
+    Listing,
+    Criteria,
+)
 from sql_smith.partial.parameter import Parameter
 
 
@@ -9,7 +14,7 @@ def __is_statement(value) -> bool:
     return isinstance(value, StatementInterface)
 
 
-def param(value) -> 'StatementInterface':
+def param(value) -> "StatementInterface":
     """Create a parameter.
 
     >>> func('POINT', param(1), param(2))  # POINT(? , ?)
@@ -31,15 +36,15 @@ def express(pattern: str, *args):
     return Expression(pattern, *param_all(*args))
 
 
-def alias(field_name, field_alias: str) -> 'ExpressionInterface':
+def alias(field_name, field_alias: str) -> "ExpressionInterface":
     """Create an alias for a column or a function.
 
     >>> alias('users.id', 'uid')  # "users"."id" AS "uid"
     """
-    return express('{} AS {}', identify(field_name), identify(field_alias))
+    return express("{} AS {}", identify(field_name), identify(field_alias))
 
 
-def listing(values: Union[Tuple, List], separator: str = ', ') -> Listing:
+def listing(values: tuple | list, separator: str = ", ") -> Listing:
     """Create a listing.
 
     >>> listing((1, 1, 2, 3, 5))  # ?, ?, ?, ?, ?
@@ -48,23 +53,22 @@ def listing(values: Union[Tuple, List], separator: str = ', ') -> Listing:
     return Listing(separator, *param_all(*values))
 
 
-def func(function: str, *args) -> 'ExpressionInterface':
+def func(function: str, *args) -> "ExpressionInterface":
     """Create a function.
 
     >>> func('COUNT', 'user.id')  # COUNT("users"."id")
     """
-    return express('{}({{}})'.format(function), listing(identify_all(*args)))
+    return express("{}({{}})".format(function), listing(identify_all(*args)))
 
 
-def literal(value) -> 'StatementInterface':
-    """Create a literal.
-    """
+def literal(value) -> "StatementInterface":
+    """Create a literal."""
     if __is_statement(value):
         return value
     return Literal(value)
 
 
-def criteria(pattern: str, *args) -> 'CriteriaInterface':
+def criteria(pattern: str, *args) -> "CriteriaInterface":
     """Create a criteria.
 
     >>> c = criteria(
@@ -80,19 +84,18 @@ def criteria(pattern: str, *args) -> 'CriteriaInterface':
 
 
 def on(left: str, right: str):
-    """Create an on clause.
-    """
-    return criteria('{} = {}', identify(left), identify(right))
+    """Create an on clause."""
+    return criteria("{} = {}", identify(left), identify(right))
 
 
-def order(column, direction: str = None) -> 'StatementInterface':
+def order(column, direction: str = None) -> "StatementInterface":
     """Create an order clause."""
     if direction is None:
         return identify(column)
-    return express('{{}} {}'.format(direction.upper()), identify(column))
+    return express("{{}} {}".format(direction.upper()), identify(column))
 
 
-def group(c: 'CriteriaInterface') -> 'CriteriaInterface':
+def group(c: "CriteriaInterface") -> "CriteriaInterface":
     """Create a group of criteria.
 
     >>> group(
@@ -103,7 +106,7 @@ def group(c: 'CriteriaInterface') -> 'CriteriaInterface':
     >>> )
     >>> # ("username" = ? OR "first_name" = ?) AND "is_active" = ?
     """
-    return criteria('({})', c)
+    return criteria("({})", c)
 
 
 def field(name):
@@ -112,6 +115,7 @@ def field(name):
     >>> field('users.id').eq(100)  # "users".id = ?
     """
     from sql_smith.builder import CriteriaBuilder
+
     return CriteriaBuilder(identify(name))
 
 
@@ -121,10 +125,11 @@ def search(name):
     >>> search('username').contains('admin')  # "username" LIKE '%admin%'
     """
     from sql_smith.builder import LikeBuilder
+
     return LikeBuilder(identify(name))
 
 
-def identify_all(*names) -> Tuple:
+def identify_all(*names) -> tuple:
     """Identify all names.
 
     >>> identify_all('id', 'username')  # ("id", "username")
@@ -132,7 +137,7 @@ def identify_all(*names) -> Tuple:
     return tuple(map(identify, names))
 
 
-def identify(name) -> 'StatementInterface':
+def identify(name) -> "StatementInterface":
     """Identify a name.
 
     >>> identify('users.id')  # "users"."id"
@@ -140,10 +145,10 @@ def identify(name) -> 'StatementInterface':
     if __is_statement(name):
         return name
 
-    if name.find('.') != -1:
-        return QualifiedIdentifier(*identify_all(*name.split('.')))
+    if name.find(".") != -1:
+        return QualifiedIdentifier(*identify_all(*name.split(".")))
 
-    if name == '*':
+    if name == "*":
         return Literal(name)
 
     return Identifier(name)

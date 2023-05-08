@@ -1,9 +1,7 @@
-from typing import Tuple
-
-
 class Query:
     """The result of a compile."""
-    def __init__(self, sql: str, params: Tuple):
+
+    def __init__(self, sql: str, params: tuple):
         self._sql = sql
         self._params = params
 
@@ -13,6 +11,6 @@ class Query:
         return self._sql
 
     @property
-    def params(self) -> Tuple:
+    def params(self) -> tuple:
         """Returns all parameters of the SQL statement."""
         return self._params

@@ -7,11 +7,11 @@ from .update_query import UpdateQuery
 from .union_query import UnionQuery
 
 __all__ = [
-    'AbstractQuery',
-    'DeleteQuery',
-    'InsertQuery',
-    'Query',
-    'SelectQuery',
-    'UpdateQuery',
-    'UnionQuery'
+    "AbstractQuery",
+    "DeleteQuery",
+    "InsertQuery",
+    "Query",
+    "SelectQuery",
+    "UpdateQuery",
+    "UnionQuery",
 ]

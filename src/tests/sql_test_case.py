@@ -1,5 +1,4 @@
 import unittest
-from typing import Tuple
 
 from sql_smith.engine.basic_engine import BasicEngine
 from sql_smith.query_factory import QueryFactory
@@ -17,17 +16,17 @@ class SqlTestCase(unittest.TestCase):
         self._factory = QueryFactory(self._engine)
 
     @classmethod
-    def get_engine(cls) -> 'EngineInterface':
+    def get_engine(cls) -> "EngineInterface":
         return BasicEngine()
 
-    def assertSql(self, sql: str, statement: 'StatementInterface') -> None:
+    def assertSql(self, sql: str, statement: "StatementInterface") -> None:
         self.assertEqual(sql, statement.sql(self._engine))
         if not isinstance(statement, QueryInterface):
             return
 
         self.assertEqual(sql, statement.compile().sql)
 
-    def assertParams(self, params: Tuple, statement: 'StatementInterface') -> None:
+    def assertParams(self, params: tuple, statement: "StatementInterface") -> None:
         self.assertEqual(params, statement.params(self._engine))
         if not isinstance(statement, QueryInterface):
             return

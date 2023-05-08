@@ -3,6 +3,7 @@ from sql_smith.engine import BasicEngine
 
 class SqliteEngine(BasicEngine):
     """A custom engine for Sqlite SQL dialect."""
+
     def export_parameter(self, param) -> str:
         """Export a parameter.
 

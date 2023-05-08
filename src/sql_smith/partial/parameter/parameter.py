@@ -1,12 +1,10 @@
-from typing import Tuple, Union
-
 from sql_smith.partial.parameter import NullParameter, BoolParameter
 from sql_smith.interfaces import StatementInterface
 
 
 class Parameter(StatementInterface):
-    def __init__(self, value: Union[str, int, float]):
-        self._params = (value, )
+    def __init__(self, value: str | int | float):
+        self._params = (value,)
 
     @classmethod
     def create(cls, value) -> StatementInterface:
@@ -17,8 +15,8 @@ class Parameter(StatementInterface):
 
         return Parameter(value)
 
-    def sql(self, engine: 'EngineInterface') -> str:
+    def sql(self, engine: "EngineInterface") -> str:
         return engine.export_parameter(engine.get_parameter_placeholder())
 
-    def params(self, engine: 'EngineInterface') -> Tuple:
+    def params(self, engine: "EngineInterface") -> tuple:
         return self._params

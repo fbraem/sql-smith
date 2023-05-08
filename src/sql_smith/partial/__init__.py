@@ -9,13 +9,13 @@ from .listing import Listing
 from .literal import Literal
 
 __all__ = [
-    'Criteria',
-    'Expression',
-    'Identifier',
-    'LikeBegins',
-    'LikeContains',
-    'LikeEnds',
-    'Listing',
-    'Literal',
-    'QualifiedIdentifier'
+    "Criteria",
+    "Expression",
+    "Identifier",
+    "LikeBegins",
+    "LikeContains",
+    "LikeEnds",
+    "Listing",
+    "Literal",
+    "QualifiedIdentifier",
 ]

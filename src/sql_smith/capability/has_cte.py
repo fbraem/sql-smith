@@ -1,5 +1,3 @@
-from dataclasses import dataclass
-
 from sql_smith.interfaces import ExpressionInterface
 
 
@@ -11,8 +9,8 @@ class HasCteMixin:
             self._cte[name] = query
         return self
 
-    def _apply_with(self, query: 'ExpressionInterface') -> 'ExpressionInterface':
+    def _apply_with(self, query: "ExpressionInterface") -> "ExpressionInterface":
         if len(self._cte) > 0:
             for name, cte_query in self._cte.items():
-                query = query.append(name + ' AS ({})', cte_query)
+                query = query.append(name + " AS ({})", cte_query)
         return query

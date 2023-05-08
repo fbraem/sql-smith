@@ -7,17 +7,17 @@ from .sql_test_case import SqlTestCase
 
 class SqlServerEngineTests(SqlTestCase):
     @classmethod
-    def get_engine(cls) -> 'EngineInterface':
+    def get_engine(cls) -> "EngineInterface":
         return SqlServerEngine()
 
     def test_identifier(self) -> None:
-        f = identify('id')
-        self.assertSql('[id]', f)
+        f = identify("id")
+        self.assertSql("[id]", f)
 
     def test_like(self) -> None:
-        expr = search('username').contains('[a-z]')
-        self.assertParams((r'%\[a-z\]%', ), expr)
+        expr = search("username").contains("[a-z]")
+        self.assertParams((r"%\[a-z\]%",), expr)
 
 
-if __name__ == '__main__':
+if __name__ == "__main__":
     unittest.main()

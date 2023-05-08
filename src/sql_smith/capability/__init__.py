@@ -8,12 +8,12 @@ from .has_returning import HasReturningMixin
 from .has_where import HasWhereMixin
 
 __all__ = [
-    'CanUnionMixin',
-    'HasCteMixin',
-    'HasFromMixin',
-    'HasLimitMixin',
-    'HasOffsetMixin',
-    'HasOrderByMixin',
-    'HasReturningMixin',
-    'HasWhereMixin'
+    "CanUnionMixin",
+    "HasCteMixin",
+    "HasFromMixin",
+    "HasLimitMixin",
+    "HasOffsetMixin",
+    "HasOrderByMixin",
+    "HasReturningMixin",
+    "HasWhereMixin",
 ]

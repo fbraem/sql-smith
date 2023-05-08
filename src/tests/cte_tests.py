@@ -1,4 +1,4 @@
-from sql_smith.functions import field, on
+from sql_smith.functions import on
 from .sql_test_case import SqlTestCase
 
 
