@@ -159,7 +159,8 @@ Grouping can be applied:
 
 .. code-block:: python
 
-    query = self._factory \
+    factory = QueryFactory(CommonEngine())
+    query = factory \
         .select(
             alias(func('COUNT', 'id'), 'total')
         ) \
@@ -174,8 +175,9 @@ And also the having clause can be applied:
 
 .. code-block:: python
 
+    factory = QueryFactory(CommonEngine())
     salary_sum = func('SUM', 'salary')
-    query = self._factory \
+    query = factory \
         .select(
             'department',
             alias(salary_sum, 'total')
@@ -187,3 +189,18 @@ And also the having clause can be applied:
         print(query.sql)  # SELECT "department", SUM("salary") AS "total" FROM "employees" GROUP BY "department" HAVING SUM("salary") > ?
         print(query.params)  # (5000, )
 
+
+CTE
+***
+From version 1.1.0, CTE can be used. Create the CTE as a normal select query and use :py:func:`~sql_smith.SelectQuery.with_` 
+of :py:class:`~sql_smith.query.SelectQuery` to use it with another query.
+
+.. code-block:: python
+
+        factory = QueryFactory(CommonEngine())
+        cte = factory.select("id").from_("users").order_by("users.id").limit(10)
+        select = factory.select() \
+            .with_("limit_users", cte) \
+            .from_("users") \
+            .left_join("limit_users", on("limit_users.id", "users.id"))
+        

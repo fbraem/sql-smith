@@ -1,18 +1,18 @@
 
 <!DOCTYPE html>
 
-<html>
+<html lang="en">
   <head>
     <meta charset="utf-8" />
-    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" /><meta name="generator" content="Docutils 0.18.1: http://docutils.sourceforge.net/" />
+
     <title>API &#8212; sql-smith  documentation</title>
-    <link rel="stylesheet" href="_static/pygments.css" type="text/css" />
-    <link rel="stylesheet" href="_static/alabaster.css" type="text/css" />
+    <link rel="stylesheet" type="text/css" href="_static/pygments.css" />
+    <link rel="stylesheet" type="text/css" href="_static/alabaster.css" />
     <link rel="stylesheet" type="text/css" href="_static/custom.css" />
-    <script id="documentation_options" data-url_root="./" src="_static/documentation_options.js"></script>
-    <script src="_static/jquery.js"></script>
-    <script src="_static/underscore.js"></script>
+    <script data-url_root="./" id="documentation_options" src="_static/documentation_options.js"></script>
     <script src="_static/doctools.js"></script>
+    <script src="_static/sphinx_highlight.js"></script>
     <link rel="index" title="Index" href="genindex.html" />
     <link rel="search" title="Search" href="search.html" />
     <link rel="next" title="Latitude vs sql-smith" href="difference.html" />
@@ -33,125 +33,125 @@
 
           <div class="body" role="main">
             
-  <div class="section" id="api">
-<h1>API<a class="headerlink" href="#api" title="Permalink to this headline">¶</a></h1>
+  <section id="api">
+<h1>API<a class="headerlink" href="#api" title="Permalink to this heading">¶</a></h1>
 <p>A developer building SQL statements only needs to create a QueryFactory with the desired engine. Assemble the
 query with the available functions and compile it to get the SQL statement as a string and the parameters as
 a tuple.</p>
-<span class="target" id="module-sql_smith"></span><div class="section" id="engines">
-<h2>Engines<a class="headerlink" href="#engines" title="Permalink to this headline">¶</a></h2>
+<span class="target" id="module-sql_smith"></span><section id="engines">
+<h2>Engines<a class="headerlink" href="#engines" title="Permalink to this heading">¶</a></h2>
 <p>An engine is responsible for creating query instances. These methods are called by the QueryFactory.
 It also provides methods to handle common query builder actions (like escaping an identifier). When a database
 needs an exception, a specific Engine class can derive from BasicEngine and implement the different behaviour.</p>
 <dl class="py class">
-<dt id="sql_smith.engine.BasicEngine">
-<em class="property"><span class="pre">class</span> </em><code class="sig-prename descclassname"><span class="pre">sql_smith.engine.</span></code><code class="sig-name descname"><span class="pre">BasicEngine</span></code><a class="headerlink" href="#sql_smith.engine.BasicEngine" title="Permalink to this definition">¶</a></dt>
+<dt class="sig sig-object py" id="sql_smith.engine.BasicEngine">
+<em class="property"><span class="pre">class</span><span class="w"> </span></em><span class="sig-prename descclassname"><span class="pre">sql_smith.engine.</span></span><span class="sig-name descname"><span class="pre">BasicEngine</span></span><a class="headerlink" href="#sql_smith.engine.BasicEngine" title="Permalink to this definition">¶</a></dt>
 <dd><p>Basic engine</p>
 <p>A default implementation of an engine.</p>
 <dl class="py method">
-<dt id="sql_smith.engine.BasicEngine.escape_identifier">
-<code class="sig-name descname"><span class="pre">escape_identifier</span></code><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">identifier</span></span><span class="p"><span class="pre">:</span></span> <span class="n"><span class="pre">str</span></span></em><span class="sig-paren">)</span> &#x2192; <span class="pre">str</span><a class="headerlink" href="#sql_smith.engine.BasicEngine.escape_identifier" title="Permalink to this definition">¶</a></dt>
+<dt class="sig sig-object py" id="sql_smith.engine.BasicEngine.escape_identifier">
+<span class="sig-name descname"><span class="pre">escape_identifier</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">identifier</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><span class="pre">str</span></span></em><span class="sig-paren">)</span> <span class="sig-return"><span class="sig-return-icon">&#x2192;</span> <span class="sig-return-typehint"><span class="pre">str</span></span></span><a class="headerlink" href="#sql_smith.engine.BasicEngine.escape_identifier" title="Permalink to this definition">¶</a></dt>
 <dd><p>Escapes an identifier.</p>
 <p>The default implementation returns the identifier as is.</p>
 </dd></dl>
 
 <dl class="py method">
-<dt id="sql_smith.engine.BasicEngine.escape_like">
-<code class="sig-name descname"><span class="pre">escape_like</span></code><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">parameter</span></span><span class="p"><span class="pre">:</span></span> <span class="n"><span class="pre">str</span></span></em><span class="sig-paren">)</span> &#x2192; <span class="pre">str</span><a class="headerlink" href="#sql_smith.engine.BasicEngine.escape_like" title="Permalink to this definition">¶</a></dt>
+<dt class="sig sig-object py" id="sql_smith.engine.BasicEngine.escape_like">
+<span class="sig-name descname"><span class="pre">escape_like</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">parameter</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><span class="pre">str</span></span></em><span class="sig-paren">)</span> <span class="sig-return"><span class="sig-return-icon">&#x2192;</span> <span class="sig-return-typehint"><span class="pre">str</span></span></span><a class="headerlink" href="#sql_smith.engine.BasicEngine.escape_like" title="Permalink to this definition">¶</a></dt>
 <dd><p>Escapes the LIKE argument</p>
 <p>A backslash is used to escape wildcards.
 Standard wildcards are underscore and percent sign.</p>
 </dd></dl>
 
 <dl class="py method">
-<dt id="sql_smith.engine.BasicEngine.export_parameter">
-<code class="sig-name descname"><span class="pre">export_parameter</span></code><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">param</span></span></em><span class="sig-paren">)</span> &#x2192; <span class="pre">str</span><a class="headerlink" href="#sql_smith.engine.BasicEngine.export_parameter" title="Permalink to this definition">¶</a></dt>
+<dt class="sig sig-object py" id="sql_smith.engine.BasicEngine.export_parameter">
+<span class="sig-name descname"><span class="pre">export_parameter</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">param</span></span></em><span class="sig-paren">)</span> <span class="sig-return"><span class="sig-return-icon">&#x2192;</span> <span class="sig-return-typehint"><span class="pre">str</span></span></span><a class="headerlink" href="#sql_smith.engine.BasicEngine.export_parameter" title="Permalink to this definition">¶</a></dt>
 <dd><p>Export a parameter.</p>
 <p>A boolean will be exported as true or false. A None value will be exported as NULL.</p>
 </dd></dl>
 
 <dl class="py method">
-<dt id="sql_smith.engine.BasicEngine.extract_params">
-<code class="sig-name descname"><span class="pre">extract_params</span></code><span class="sig-paren">(</span><span class="sig-paren">)</span> &#x2192; <span class="pre">Callable</span><span class="p"><span class="pre">[</span></span><span class="p"><span class="pre">[</span></span><span class="pre">sql_smith.interfaces.statement_interface.StatementInterface</span><span class="p"><span class="pre">]</span></span><span class="p"><span class="pre">,</span> </span><span class="pre">Tuple</span><span class="p"><span class="pre">]</span></span><a class="headerlink" href="#sql_smith.engine.BasicEngine.extract_params" title="Permalink to this definition">¶</a></dt>
+<dt class="sig sig-object py" id="sql_smith.engine.BasicEngine.extract_params">
+<span class="sig-name descname"><span class="pre">extract_params</span></span><span class="sig-paren">(</span><span class="sig-paren">)</span> <span class="sig-return"><span class="sig-return-icon">&#x2192;</span> <span class="sig-return-typehint"><span class="pre">Callable</span><span class="p"><span class="pre">[</span></span><span class="p"><span class="pre">[</span></span><span class="pre">StatementInterface</span><span class="p"><span class="pre">]</span></span><span class="p"><span class="pre">,</span></span><span class="w"> </span><span class="pre">tuple</span><span class="p"><span class="pre">]</span></span></span></span><a class="headerlink" href="#sql_smith.engine.BasicEngine.extract_params" title="Permalink to this definition">¶</a></dt>
 <dd><p>Create a lambda to extract parameters.</p>
 </dd></dl>
 
 <dl class="py method">
-<dt id="sql_smith.engine.BasicEngine.extract_sql">
-<code class="sig-name descname"><span class="pre">extract_sql</span></code><span class="sig-paren">(</span><span class="sig-paren">)</span> &#x2192; <span class="pre">Callable</span><span class="p"><span class="pre">[</span></span><span class="p"><span class="pre">[</span></span><span class="pre">sql_smith.interfaces.statement_interface.StatementInterface</span><span class="p"><span class="pre">]</span></span><span class="p"><span class="pre">,</span> </span><span class="pre">str</span><span class="p"><span class="pre">]</span></span><a class="headerlink" href="#sql_smith.engine.BasicEngine.extract_sql" title="Permalink to this definition">¶</a></dt>
+<dt class="sig sig-object py" id="sql_smith.engine.BasicEngine.extract_sql">
+<span class="sig-name descname"><span class="pre">extract_sql</span></span><span class="sig-paren">(</span><span class="sig-paren">)</span> <span class="sig-return"><span class="sig-return-icon">&#x2192;</span> <span class="sig-return-typehint"><span class="pre">Callable</span><span class="p"><span class="pre">[</span></span><span class="p"><span class="pre">[</span></span><span class="pre">StatementInterface</span><span class="p"><span class="pre">]</span></span><span class="p"><span class="pre">,</span></span><span class="w"> </span><span class="pre">str</span><span class="p"><span class="pre">]</span></span></span></span><a class="headerlink" href="#sql_smith.engine.BasicEngine.extract_sql" title="Permalink to this definition">¶</a></dt>
 <dd><p>Create a lambda to extract SQL.</p>
 </dd></dl>
 
 <dl class="py method">
-<dt id="sql_smith.engine.BasicEngine.flatten_params">
-<code class="sig-name descname"><span class="pre">flatten_params</span></code><span class="sig-paren">(</span><em class="sig-param"><span class="o"><span class="pre">*</span></span><span class="n"><span class="pre">args</span></span><span class="p"><span class="pre">:</span></span> <span class="n"><span class="pre">sql_smith.interfaces.statement_interface.StatementInterface</span></span></em><span class="sig-paren">)</span> &#x2192; <span class="pre">Tuple</span><a class="headerlink" href="#sql_smith.engine.BasicEngine.flatten_params" title="Permalink to this definition">¶</a></dt>
+<dt class="sig sig-object py" id="sql_smith.engine.BasicEngine.flatten_params">
+<span class="sig-name descname"><span class="pre">flatten_params</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="o"><span class="pre">*</span></span><span class="n"><span class="pre">args</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><span class="pre">StatementInterface</span></span></em><span class="sig-paren">)</span> <span class="sig-return"><span class="sig-return-icon">&#x2192;</span> <span class="sig-return-typehint"><span class="pre">tuple</span></span></span><a class="headerlink" href="#sql_smith.engine.BasicEngine.flatten_params" title="Permalink to this definition">¶</a></dt>
 <dd><p>Create a tuple with all parameters found.</p>
 </dd></dl>
 
 <dl class="py method">
-<dt id="sql_smith.engine.BasicEngine.flatten_sql">
-<code class="sig-name descname"><span class="pre">flatten_sql</span></code><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">separator</span></span><span class="p"><span class="pre">:</span></span> <span class="n"><span class="pre">str</span></span></em>, <em class="sig-param"><span class="o"><span class="pre">*</span></span><span class="n"><span class="pre">args</span></span><span class="p"><span class="pre">:</span></span> <span class="n"><span class="pre">sql_smith.interfaces.statement_interface.StatementInterface</span></span></em><span class="sig-paren">)</span> &#x2192; <span class="pre">str</span><a class="headerlink" href="#sql_smith.engine.BasicEngine.flatten_sql" title="Permalink to this definition">¶</a></dt>
+<dt class="sig sig-object py" id="sql_smith.engine.BasicEngine.flatten_sql">
+<span class="sig-name descname"><span class="pre">flatten_sql</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">separator</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><span class="pre">str</span></span></em>, <em class="sig-param"><span class="o"><span class="pre">*</span></span><span class="n"><span class="pre">args</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><span class="pre">StatementInterface</span></span></em><span class="sig-paren">)</span> <span class="sig-return"><span class="sig-return-icon">&#x2192;</span> <span class="sig-return-typehint"><span class="pre">str</span></span></span><a class="headerlink" href="#sql_smith.engine.BasicEngine.flatten_sql" title="Permalink to this definition">¶</a></dt>
 <dd><p>Transform StatementInterface arguments to a string.</p>
 </dd></dl>
 
 <dl class="py method">
-<dt id="sql_smith.engine.BasicEngine.make_delete">
-<code class="sig-name descname"><span class="pre">make_delete</span></code><span class="sig-paren">(</span><span class="sig-paren">)</span> &#x2192; <span class="pre">sql_smith.query.delete_query.DeleteQuery</span><a class="headerlink" href="#sql_smith.engine.BasicEngine.make_delete" title="Permalink to this definition">¶</a></dt>
+<dt class="sig sig-object py" id="sql_smith.engine.BasicEngine.make_delete">
+<span class="sig-name descname"><span class="pre">make_delete</span></span><span class="sig-paren">(</span><span class="sig-paren">)</span> <span class="sig-return"><span class="sig-return-icon">&#x2192;</span> <span class="sig-return-typehint"><a class="reference internal" href="#sql_smith.query.DeleteQuery" title="sql_smith.query.delete_query.DeleteQuery"><span class="pre">DeleteQuery</span></a></span></span><a class="headerlink" href="#sql_smith.engine.BasicEngine.make_delete" title="Permalink to this definition">¶</a></dt>
 <dd><p>Creates a DeleteQuery.</p>
 </dd></dl>
 
 <dl class="py method">
-<dt id="sql_smith.engine.BasicEngine.make_insert">
-<code class="sig-name descname"><span class="pre">make_insert</span></code><span class="sig-paren">(</span><span class="sig-paren">)</span> &#x2192; <span class="pre">sql_smith.query.insert_query.InsertQuery</span><a class="headerlink" href="#sql_smith.engine.BasicEngine.make_insert" title="Permalink to this definition">¶</a></dt>
+<dt class="sig sig-object py" id="sql_smith.engine.BasicEngine.make_insert">
+<span class="sig-name descname"><span class="pre">make_insert</span></span><span class="sig-paren">(</span><span class="sig-paren">)</span> <span class="sig-return"><span class="sig-return-icon">&#x2192;</span> <span class="sig-return-typehint"><a class="reference internal" href="#sql_smith.query.InsertQuery" title="sql_smith.query.insert_query.InsertQuery"><span class="pre">InsertQuery</span></a></span></span><a class="headerlink" href="#sql_smith.engine.BasicEngine.make_insert" title="Permalink to this definition">¶</a></dt>
 <dd><p>Creates an InsertQuery.</p>
 </dd></dl>
 
 <dl class="py method">
-<dt id="sql_smith.engine.BasicEngine.make_select">
-<code class="sig-name descname"><span class="pre">make_select</span></code><span class="sig-paren">(</span><span class="sig-paren">)</span> &#x2192; <span class="pre">sql_smith.query.select_query.SelectQuery</span><a class="headerlink" href="#sql_smith.engine.BasicEngine.make_select" title="Permalink to this definition">¶</a></dt>
+<dt class="sig sig-object py" id="sql_smith.engine.BasicEngine.make_select">
+<span class="sig-name descname"><span class="pre">make_select</span></span><span class="sig-paren">(</span><span class="sig-paren">)</span> <span class="sig-return"><span class="sig-return-icon">&#x2192;</span> <span class="sig-return-typehint"><a class="reference internal" href="#sql_smith.query.SelectQuery" title="sql_smith.query.select_query.SelectQuery"><span class="pre">SelectQuery</span></a></span></span><a class="headerlink" href="#sql_smith.engine.BasicEngine.make_select" title="Permalink to this definition">¶</a></dt>
 <dd><p>Creates a SelectQuery.</p>
 </dd></dl>
 
 <dl class="py method">
-<dt id="sql_smith.engine.BasicEngine.make_update">
-<code class="sig-name descname"><span class="pre">make_update</span></code><span class="sig-paren">(</span><span class="sig-paren">)</span> &#x2192; <span class="pre">sql_smith.query.update_query.UpdateQuery</span><a class="headerlink" href="#sql_smith.engine.BasicEngine.make_update" title="Permalink to this definition">¶</a></dt>
+<dt class="sig sig-object py" id="sql_smith.engine.BasicEngine.make_update">
+<span class="sig-name descname"><span class="pre">make_update</span></span><span class="sig-paren">(</span><span class="sig-paren">)</span> <span class="sig-return"><span class="sig-return-icon">&#x2192;</span> <span class="sig-return-typehint"><a class="reference internal" href="#sql_smith.query.UpdateQuery" title="sql_smith.query.update_query.UpdateQuery"><span class="pre">UpdateQuery</span></a></span></span><a class="headerlink" href="#sql_smith.engine.BasicEngine.make_update" title="Permalink to this definition">¶</a></dt>
 <dd><p>Creates an UpdateQuery.</p>
 </dd></dl>
 
 </dd></dl>
 
 <dl class="py class">
-<dt id="sql_smith.engine.CommonEngine">
-<em class="property"><span class="pre">class</span> </em><code class="sig-prename descclassname"><span class="pre">sql_smith.engine.</span></code><code class="sig-name descname"><span class="pre">CommonEngine</span></code><a class="headerlink" href="#sql_smith.engine.CommonEngine" title="Permalink to this definition">¶</a></dt>
+<dt class="sig sig-object py" id="sql_smith.engine.CommonEngine">
+<em class="property"><span class="pre">class</span><span class="w"> </span></em><span class="sig-prename descclassname"><span class="pre">sql_smith.engine.</span></span><span class="sig-name descname"><span class="pre">CommonEngine</span></span><a class="headerlink" href="#sql_smith.engine.CommonEngine" title="Permalink to this definition">¶</a></dt>
 <dd><p>An engine that supports common SQL standard.</p>
 <dl class="py method">
-<dt id="sql_smith.engine.CommonEngine.escape_identifier">
-<code class="sig-name descname"><span class="pre">escape_identifier</span></code><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">identifier</span></span><span class="p"><span class="pre">:</span></span> <span class="n"><span class="pre">str</span></span></em><span class="sig-paren">)</span> &#x2192; <span class="pre">str</span><a class="headerlink" href="#sql_smith.engine.CommonEngine.escape_identifier" title="Permalink to this definition">¶</a></dt>
+<dt class="sig sig-object py" id="sql_smith.engine.CommonEngine.escape_identifier">
+<span class="sig-name descname"><span class="pre">escape_identifier</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">identifier</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><span class="pre">str</span></span></em><span class="sig-paren">)</span> <span class="sig-return"><span class="sig-return-icon">&#x2192;</span> <span class="sig-return-typehint"><span class="pre">str</span></span></span><a class="headerlink" href="#sql_smith.engine.CommonEngine.escape_identifier" title="Permalink to this definition">¶</a></dt>
 <dd><p>Escapes identifiers by putting quotes around it.</p>
 </dd></dl>
 
 </dd></dl>
 
 <dl class="py class">
-<dt id="sql_smith.engine.MysqlEngine">
-<em class="property"><span class="pre">class</span> </em><code class="sig-prename descclassname"><span class="pre">sql_smith.engine.</span></code><code class="sig-name descname"><span class="pre">MysqlEngine</span></code><a class="headerlink" href="#sql_smith.engine.MysqlEngine" title="Permalink to this definition">¶</a></dt>
+<dt class="sig sig-object py" id="sql_smith.engine.MysqlEngine">
+<em class="property"><span class="pre">class</span><span class="w"> </span></em><span class="sig-prename descclassname"><span class="pre">sql_smith.engine.</span></span><span class="sig-name descname"><span class="pre">MysqlEngine</span></span><a class="headerlink" href="#sql_smith.engine.MysqlEngine" title="Permalink to this definition">¶</a></dt>
 <dd><p>A custom engine for MySQL SQL dialect.</p>
 <dl class="py method">
-<dt id="sql_smith.engine.MysqlEngine.escape_identifier">
-<code class="sig-name descname"><span class="pre">escape_identifier</span></code><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">identifier</span></span><span class="p"><span class="pre">:</span></span> <span class="n"><span class="pre">str</span></span></em><span class="sig-paren">)</span> &#x2192; <span class="pre">str</span><a class="headerlink" href="#sql_smith.engine.MysqlEngine.escape_identifier" title="Permalink to this definition">¶</a></dt>
+<dt class="sig sig-object py" id="sql_smith.engine.MysqlEngine.escape_identifier">
+<span class="sig-name descname"><span class="pre">escape_identifier</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">identifier</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><span class="pre">str</span></span></em><span class="sig-paren">)</span> <span class="sig-return"><span class="sig-return-icon">&#x2192;</span> <span class="sig-return-typehint"><span class="pre">str</span></span></span><a class="headerlink" href="#sql_smith.engine.MysqlEngine.escape_identifier" title="Permalink to this definition">¶</a></dt>
 <dd><p>Escapes the identifier by surrounding it with backticks.</p>
 </dd></dl>
 
 <dl class="py method">
-<dt id="sql_smith.engine.MysqlEngine.make_insert">
-<code class="sig-name descname"><span class="pre">make_insert</span></code><span class="sig-paren">(</span><span class="sig-paren">)</span> &#x2192; <span class="pre">sql_smith.query.mysql.insert_query.InsertQuery</span><a class="headerlink" href="#sql_smith.engine.MysqlEngine.make_insert" title="Permalink to this definition">¶</a></dt>
+<dt class="sig sig-object py" id="sql_smith.engine.MysqlEngine.make_insert">
+<span class="sig-name descname"><span class="pre">make_insert</span></span><span class="sig-paren">(</span><span class="sig-paren">)</span> <span class="sig-return"><span class="sig-return-icon">&#x2192;</span> <span class="sig-return-typehint"><span class="pre">InsertQuery</span></span></span><a class="headerlink" href="#sql_smith.engine.MysqlEngine.make_insert" title="Permalink to this definition">¶</a></dt>
 <dd><p>Creates a custom MySql INSERT query.</p>
 <p>The MySQL insert query supports IGNORE.</p>
 </dd></dl>
 
 <dl class="py method">
-<dt id="sql_smith.engine.MysqlEngine.make_select">
-<code class="sig-name descname"><span class="pre">make_select</span></code><span class="sig-paren">(</span><span class="sig-paren">)</span> &#x2192; <span class="pre">sql_smith.query.mysql.select_query.SelectQuery</span><a class="headerlink" href="#sql_smith.engine.MysqlEngine.make_select" title="Permalink to this definition">¶</a></dt>
+<dt class="sig sig-object py" id="sql_smith.engine.MysqlEngine.make_select">
+<span class="sig-name descname"><span class="pre">make_select</span></span><span class="sig-paren">(</span><span class="sig-paren">)</span> <span class="sig-return"><span class="sig-return-icon">&#x2192;</span> <span class="sig-return-typehint"><span class="pre">SelectQuery</span></span></span><a class="headerlink" href="#sql_smith.engine.MysqlEngine.make_select" title="Permalink to this definition">¶</a></dt>
 <dd><p>Creates a custom MySql SELECT query.</p>
 <p>The MySQL select query supports SQL_CALC_FOUND_ROWS.</p>
 </dd></dl>
@@ -159,19 +159,19 @@ Standard wildcards are underscore and percent sign.</p>
 </dd></dl>
 
 <dl class="py class">
-<dt id="sql_smith.engine.PostgresEngine">
-<em class="property"><span class="pre">class</span> </em><code class="sig-prename descclassname"><span class="pre">sql_smith.engine.</span></code><code class="sig-name descname"><span class="pre">PostgresEngine</span></code><a class="headerlink" href="#sql_smith.engine.PostgresEngine" title="Permalink to this definition">¶</a></dt>
+<dt class="sig sig-object py" id="sql_smith.engine.PostgresEngine">
+<em class="property"><span class="pre">class</span><span class="w"> </span></em><span class="sig-prename descclassname"><span class="pre">sql_smith.engine.</span></span><span class="sig-name descname"><span class="pre">PostgresEngine</span></span><a class="headerlink" href="#sql_smith.engine.PostgresEngine" title="Permalink to this definition">¶</a></dt>
 <dd><p>A custom engine for Postgres SQL dialect.</p>
 <dl class="py method">
-<dt id="sql_smith.engine.PostgresEngine.make_insert">
-<code class="sig-name descname"><span class="pre">make_insert</span></code><span class="sig-paren">(</span><span class="sig-paren">)</span> &#x2192; <span class="pre">sql_smith.query.postgres.insert_query.InsertQuery</span><a class="headerlink" href="#sql_smith.engine.PostgresEngine.make_insert" title="Permalink to this definition">¶</a></dt>
+<dt class="sig sig-object py" id="sql_smith.engine.PostgresEngine.make_insert">
+<span class="sig-name descname"><span class="pre">make_insert</span></span><span class="sig-paren">(</span><span class="sig-paren">)</span> <span class="sig-return"><span class="sig-return-icon">&#x2192;</span> <span class="sig-return-typehint"><span class="pre">InsertQuery</span></span></span><a class="headerlink" href="#sql_smith.engine.PostgresEngine.make_insert" title="Permalink to this definition">¶</a></dt>
 <dd><p>Creates a custom Postgres INSERT query.</p>
 <p>The Postgres insert query supports RETURNING.</p>
 </dd></dl>
 
 <dl class="py method">
-<dt id="sql_smith.engine.PostgresEngine.make_update">
-<code class="sig-name descname"><span class="pre">make_update</span></code><span class="sig-paren">(</span><span class="sig-paren">)</span> &#x2192; <span class="pre">sql_smith.query.postgres.update_query.UpdateQuery</span><a class="headerlink" href="#sql_smith.engine.PostgresEngine.make_update" title="Permalink to this definition">¶</a></dt>
+<dt class="sig sig-object py" id="sql_smith.engine.PostgresEngine.make_update">
+<span class="sig-name descname"><span class="pre">make_update</span></span><span class="sig-paren">(</span><span class="sig-paren">)</span> <span class="sig-return"><span class="sig-return-icon">&#x2192;</span> <span class="sig-return-typehint"><span class="pre">UpdateQuery</span></span></span><a class="headerlink" href="#sql_smith.engine.PostgresEngine.make_update" title="Permalink to this definition">¶</a></dt>
 <dd><p>Creates a custom Postgres INSERT query.</p>
 <p>The Postgres update query supports RETURNING.</p>
 </dd></dl>
@@ -179,32 +179,32 @@ Standard wildcards are underscore and percent sign.</p>
 </dd></dl>
 
 <dl class="py class">
-<dt id="sql_smith.engine.SqlServerEngine">
-<em class="property"><span class="pre">class</span> </em><code class="sig-prename descclassname"><span class="pre">sql_smith.engine.</span></code><code class="sig-name descname"><span class="pre">SqlServerEngine</span></code><a class="headerlink" href="#sql_smith.engine.SqlServerEngine" title="Permalink to this definition">¶</a></dt>
+<dt class="sig sig-object py" id="sql_smith.engine.SqlServerEngine">
+<em class="property"><span class="pre">class</span><span class="w"> </span></em><span class="sig-prename descclassname"><span class="pre">sql_smith.engine.</span></span><span class="sig-name descname"><span class="pre">SqlServerEngine</span></span><a class="headerlink" href="#sql_smith.engine.SqlServerEngine" title="Permalink to this definition">¶</a></dt>
 <dd><p>A custom engine for SQL Server SQL dialect.</p>
 <dl class="py method">
-<dt id="sql_smith.engine.SqlServerEngine.escape_identifier">
-<code class="sig-name descname"><span class="pre">escape_identifier</span></code><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">identifier</span></span><span class="p"><span class="pre">:</span></span> <span class="n"><span class="pre">str</span></span></em><span class="sig-paren">)</span> &#x2192; <span class="pre">str</span><a class="headerlink" href="#sql_smith.engine.SqlServerEngine.escape_identifier" title="Permalink to this definition">¶</a></dt>
+<dt class="sig sig-object py" id="sql_smith.engine.SqlServerEngine.escape_identifier">
+<span class="sig-name descname"><span class="pre">escape_identifier</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">identifier</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><span class="pre">str</span></span></em><span class="sig-paren">)</span> <span class="sig-return"><span class="sig-return-icon">&#x2192;</span> <span class="sig-return-typehint"><span class="pre">str</span></span></span><a class="headerlink" href="#sql_smith.engine.SqlServerEngine.escape_identifier" title="Permalink to this definition">¶</a></dt>
 <dd><p>Escapes identifiers with brackets.</p>
 </dd></dl>
 
 <dl class="py method">
-<dt id="sql_smith.engine.SqlServerEngine.escape_like">
-<code class="sig-name descname"><span class="pre">escape_like</span></code><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">parameter</span></span><span class="p"><span class="pre">:</span></span> <span class="n"><span class="pre">str</span></span></em><span class="sig-paren">)</span> &#x2192; <span class="pre">str</span><a class="headerlink" href="#sql_smith.engine.SqlServerEngine.escape_like" title="Permalink to this definition">¶</a></dt>
+<dt class="sig sig-object py" id="sql_smith.engine.SqlServerEngine.escape_like">
+<span class="sig-name descname"><span class="pre">escape_like</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">parameter</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><span class="pre">str</span></span></em><span class="sig-paren">)</span> <span class="sig-return"><span class="sig-return-icon">&#x2192;</span> <span class="sig-return-typehint"><span class="pre">str</span></span></span><a class="headerlink" href="#sql_smith.engine.SqlServerEngine.escape_like" title="Permalink to this definition">¶</a></dt>
 <dd><p>Escape like argument.</p>
 <p>Also escapes character ranges.</p>
 </dd></dl>
 
 <dl class="py method">
-<dt id="sql_smith.engine.SqlServerEngine.make_delete">
-<code class="sig-name descname"><span class="pre">make_delete</span></code><span class="sig-paren">(</span><span class="sig-paren">)</span> &#x2192; <span class="pre">sql_smith.query.sql_server.delete_query.DeleteQuery</span><a class="headerlink" href="#sql_smith.engine.SqlServerEngine.make_delete" title="Permalink to this definition">¶</a></dt>
+<dt class="sig sig-object py" id="sql_smith.engine.SqlServerEngine.make_delete">
+<span class="sig-name descname"><span class="pre">make_delete</span></span><span class="sig-paren">(</span><span class="sig-paren">)</span> <span class="sig-return"><span class="sig-return-icon">&#x2192;</span> <span class="sig-return-typehint"><span class="pre">DeleteQuery</span></span></span><a class="headerlink" href="#sql_smith.engine.SqlServerEngine.make_delete" title="Permalink to this definition">¶</a></dt>
 <dd><p>Creates a custom SQL Server DELETE query.</p>
 <p>SQL Server handles LIMIT differently.</p>
 </dd></dl>
 
 <dl class="py method">
-<dt id="sql_smith.engine.SqlServerEngine.make_select">
-<code class="sig-name descname"><span class="pre">make_select</span></code><span class="sig-paren">(</span><span class="sig-paren">)</span> &#x2192; <span class="pre">sql_smith.query.sql_server.select_query.SelectQuery</span><a class="headerlink" href="#sql_smith.engine.SqlServerEngine.make_select" title="Permalink to this definition">¶</a></dt>
+<dt class="sig sig-object py" id="sql_smith.engine.SqlServerEngine.make_select">
+<span class="sig-name descname"><span class="pre">make_select</span></span><span class="sig-paren">(</span><span class="sig-paren">)</span> <span class="sig-return"><span class="sig-return-icon">&#x2192;</span> <span class="sig-return-typehint"><span class="pre">SelectQuery</span></span></span><a class="headerlink" href="#sql_smith.engine.SqlServerEngine.make_select" title="Permalink to this definition">¶</a></dt>
 <dd><p>Creates a custom SQL Server SELECT query.</p>
 <p>SQL Server handles OFFSET and LIMIT differently.</p>
 </dd></dl>
@@ -212,12 +212,12 @@ Standard wildcards are underscore and percent sign.</p>
 </dd></dl>
 
 <dl class="py class">
-<dt id="sql_smith.engine.SqliteEngine">
-<em class="property"><span class="pre">class</span> </em><code class="sig-prename descclassname"><span class="pre">sql_smith.engine.</span></code><code class="sig-name descname"><span class="pre">SqliteEngine</span></code><a class="headerlink" href="#sql_smith.engine.SqliteEngine" title="Permalink to this definition">¶</a></dt>
+<dt class="sig sig-object py" id="sql_smith.engine.SqliteEngine">
+<em class="property"><span class="pre">class</span><span class="w"> </span></em><span class="sig-prename descclassname"><span class="pre">sql_smith.engine.</span></span><span class="sig-name descname"><span class="pre">SqliteEngine</span></span><a class="headerlink" href="#sql_smith.engine.SqliteEngine" title="Permalink to this definition">¶</a></dt>
 <dd><p>A custom engine for Sqlite SQL dialect.</p>
 <dl class="py method">
-<dt id="sql_smith.engine.SqliteEngine.export_parameter">
-<code class="sig-name descname"><span class="pre">export_parameter</span></code><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">param</span></span></em><span class="sig-paren">)</span> &#x2192; <span class="pre">str</span><a class="headerlink" href="#sql_smith.engine.SqliteEngine.export_parameter" title="Permalink to this definition">¶</a></dt>
+<dt class="sig sig-object py" id="sql_smith.engine.SqliteEngine.export_parameter">
+<span class="sig-name descname"><span class="pre">export_parameter</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">param</span></span></em><span class="sig-paren">)</span> <span class="sig-return"><span class="sig-return-icon">&#x2192;</span> <span class="sig-return-typehint"><span class="pre">str</span></span></span><a class="headerlink" href="#sql_smith.engine.SqliteEngine.export_parameter" title="Permalink to this definition">¶</a></dt>
 <dd><p>Export a parameter.</p>
 <p>SQLite doesn’t support boolean storage class.
 True is translated to 1, False to 0.</p>
@@ -225,22 +225,22 @@ True is translated to 1, False to 0.</p>
 
 </dd></dl>
 
-</div>
-<div class="section" id="queryfactory">
-<h2>QueryFactory<a class="headerlink" href="#queryfactory" title="Permalink to this headline">¶</a></h2>
+</section>
+<section id="queryfactory">
+<h2>QueryFactory<a class="headerlink" href="#queryfactory" title="Permalink to this heading">¶</a></h2>
 <p>The query factory is responsible for creating queries.</p>
 <dl class="py class">
-<dt id="sql_smith.QueryFactory">
-<em class="property"><span class="pre">class</span> </em><code class="sig-prename descclassname"><span class="pre">sql_smith.</span></code><code class="sig-name descname"><span class="pre">QueryFactory</span></code><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">engine</span></span><span class="p"><span class="pre">:</span></span> <span class="n"><span class="pre">EngineInterface</span></span> <span class="o"><span class="pre">=</span></span> <span class="default_value"><span class="pre">None</span></span></em><span class="sig-paren">)</span><a class="headerlink" href="#sql_smith.QueryFactory" title="Permalink to this definition">¶</a></dt>
+<dt class="sig sig-object py" id="sql_smith.QueryFactory">
+<em class="property"><span class="pre">class</span><span class="w"> </span></em><span class="sig-prename descclassname"><span class="pre">sql_smith.</span></span><span class="sig-name descname"><span class="pre">QueryFactory</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">engine</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><span class="pre">EngineInterface</span></span><span class="w"> </span><span class="o"><span class="pre">=</span></span><span class="w"> </span><span class="default_value"><span class="pre">None</span></span></em><span class="sig-paren">)</span><a class="headerlink" href="#sql_smith.QueryFactory" title="Permalink to this definition">¶</a></dt>
 <dd><p>Factory class for creating queries</p>
 </dd></dl>
 
-</div>
-<div class="section" id="module-sql_smith.functions">
-<span id="functions"></span><h2>Functions<a class="headerlink" href="#module-sql_smith.functions" title="Permalink to this headline">¶</a></h2>
+</section>
+<section id="module-sql_smith.functions">
+<span id="functions"></span><h2>Functions<a class="headerlink" href="#module-sql_smith.functions" title="Permalink to this heading">¶</a></h2>
 <dl class="py function">
-<dt id="sql_smith.functions.alias">
-<code class="sig-prename descclassname"><span class="pre">sql_smith.functions.</span></code><code class="sig-name descname"><span class="pre">alias</span></code><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">field_name</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">field_alias</span></span><span class="p"><span class="pre">:</span></span> <span class="n"><span class="pre">str</span></span></em><span class="sig-paren">)</span> &#x2192; <span class="pre">sql_smith.interfaces.expression_interface.ExpressionInterface</span><a class="headerlink" href="#sql_smith.functions.alias" title="Permalink to this definition">¶</a></dt>
+<dt class="sig sig-object py" id="sql_smith.functions.alias">
+<span class="sig-prename descclassname"><span class="pre">sql_smith.functions.</span></span><span class="sig-name descname"><span class="pre">alias</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">field_name</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">field_alias</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><span class="pre">str</span></span></em><span class="sig-paren">)</span> <span class="sig-return"><span class="sig-return-icon">&#x2192;</span> <span class="sig-return-typehint"><span class="pre">ExpressionInterface</span></span></span><a class="headerlink" href="#sql_smith.functions.alias" title="Permalink to this definition">¶</a></dt>
 <dd><p>Create an alias for a column or a function.</p>
 <div class="doctest highlight-default notranslate"><div class="highlight"><pre><span></span><span class="gp">&gt;&gt;&gt; </span><span class="n">alias</span><span class="p">(</span><span class="s1">&#39;users.id&#39;</span><span class="p">,</span> <span class="s1">&#39;uid&#39;</span><span class="p">)</span>  <span class="c1"># &quot;users&quot;.&quot;id&quot; AS &quot;uid&quot;</span>
 </pre></div>
@@ -248,8 +248,8 @@ True is translated to 1, False to 0.</p>
 </dd></dl>
 
 <dl class="py function">
-<dt id="sql_smith.functions.criteria">
-<code class="sig-prename descclassname"><span class="pre">sql_smith.functions.</span></code><code class="sig-name descname"><span class="pre">criteria</span></code><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">pattern</span></span><span class="p"><span class="pre">:</span></span> <span class="n"><span class="pre">str</span></span></em>, <em class="sig-param"><span class="o"><span class="pre">*</span></span><span class="n"><span class="pre">args</span></span></em><span class="sig-paren">)</span> &#x2192; <span class="pre">CriteriaInterface</span><a class="headerlink" href="#sql_smith.functions.criteria" title="Permalink to this definition">¶</a></dt>
+<dt class="sig sig-object py" id="sql_smith.functions.criteria">
+<span class="sig-prename descclassname"><span class="pre">sql_smith.functions.</span></span><span class="sig-name descname"><span class="pre">criteria</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">pattern</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><span class="pre">str</span></span></em>, <em class="sig-param"><span class="o"><span class="pre">*</span></span><span class="n"><span class="pre">args</span></span></em><span class="sig-paren">)</span> <span class="sig-return"><span class="sig-return-icon">&#x2192;</span> <span class="sig-return-typehint"><span class="pre">CriteriaInterface</span></span></span><a class="headerlink" href="#sql_smith.functions.criteria" title="Permalink to this definition">¶</a></dt>
 <dd><p>Create a criteria.</p>
 <div class="doctest highlight-default notranslate"><div class="highlight"><pre><span></span><span class="gp">&gt;&gt;&gt; </span><span class="n">c</span> <span class="o">=</span> <span class="n">criteria</span><span class="p">(</span>
 <span class="gp">&gt;&gt;&gt; </span>    <span class="s2">&quot;</span><span class="si">{}</span><span class="s2"> = </span><span class="si">{}</span><span class="s2">&quot;</span><span class="p">,</span>
@@ -264,8 +264,8 @@ True is translated to 1, False to 0.</p>
 </dd></dl>
 
 <dl class="py function">
-<dt id="sql_smith.functions.express">
-<code class="sig-prename descclassname"><span class="pre">sql_smith.functions.</span></code><code class="sig-name descname"><span class="pre">express</span></code><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">pattern</span></span><span class="p"><span class="pre">:</span></span> <span class="n"><span class="pre">str</span></span></em>, <em class="sig-param"><span class="o"><span class="pre">*</span></span><span class="n"><span class="pre">args</span></span></em><span class="sig-paren">)</span><a class="headerlink" href="#sql_smith.functions.express" title="Permalink to this definition">¶</a></dt>
+<dt class="sig sig-object py" id="sql_smith.functions.express">
+<span class="sig-prename descclassname"><span class="pre">sql_smith.functions.</span></span><span class="sig-name descname"><span class="pre">express</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">pattern</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><span class="pre">str</span></span></em>, <em class="sig-param"><span class="o"><span class="pre">*</span></span><span class="n"><span class="pre">args</span></span></em><span class="sig-paren">)</span><a class="headerlink" href="#sql_smith.functions.express" title="Permalink to this definition">¶</a></dt>
 <dd><p>Create an expression.</p>
 <div class="doctest highlight-default notranslate"><div class="highlight"><pre><span></span><span class="gp">&gt;&gt;&gt; </span><span class="n">express</span><span class="p">(</span><span class="s1">&#39;</span><span class="si">{}</span><span class="s1"> + 1&#39;</span><span class="p">,</span> <span class="n">identify</span><span class="p">(</span><span class="s1">&#39;visit&#39;</span><span class="p">))</span>  <span class="c1"># &quot;visit&quot; + 1</span>
 </pre></div>
@@ -273,8 +273,8 @@ True is translated to 1, False to 0.</p>
 </dd></dl>
 
 <dl class="py function">
-<dt id="sql_smith.functions.field">
-<code class="sig-prename descclassname"><span class="pre">sql_smith.functions.</span></code><code class="sig-name descname"><span class="pre">field</span></code><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">name</span></span></em><span class="sig-paren">)</span><a class="headerlink" href="#sql_smith.functions.field" title="Permalink to this definition">¶</a></dt>
+<dt class="sig sig-object py" id="sql_smith.functions.field">
+<span class="sig-prename descclassname"><span class="pre">sql_smith.functions.</span></span><span class="sig-name descname"><span class="pre">field</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">name</span></span></em><span class="sig-paren">)</span><a class="headerlink" href="#sql_smith.functions.field" title="Permalink to this definition">¶</a></dt>
 <dd><p>Starts a criteria for a column. Use it to create a condition.</p>
 <div class="doctest highlight-default notranslate"><div class="highlight"><pre><span></span><span class="gp">&gt;&gt;&gt; </span><span class="n">field</span><span class="p">(</span><span class="s1">&#39;users.id&#39;</span><span class="p">)</span><span class="o">.</span><span class="n">eq</span><span class="p">(</span><span class="mi">100</span><span class="p">)</span>  <span class="c1"># &quot;users&quot;.id = ?</span>
 </pre></div>
@@ -282,8 +282,8 @@ True is translated to 1, False to 0.</p>
 </dd></dl>
 
 <dl class="py function">
-<dt id="sql_smith.functions.func">
-<code class="sig-prename descclassname"><span class="pre">sql_smith.functions.</span></code><code class="sig-name descname"><span class="pre">func</span></code><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">function</span></span><span class="p"><span class="pre">:</span></span> <span class="n"><span class="pre">str</span></span></em>, <em class="sig-param"><span class="o"><span class="pre">*</span></span><span class="n"><span class="pre">args</span></span></em><span class="sig-paren">)</span> &#x2192; <span class="pre">sql_smith.interfaces.expression_interface.ExpressionInterface</span><a class="headerlink" href="#sql_smith.functions.func" title="Permalink to this definition">¶</a></dt>
+<dt class="sig sig-object py" id="sql_smith.functions.func">
+<span class="sig-prename descclassname"><span class="pre">sql_smith.functions.</span></span><span class="sig-name descname"><span class="pre">func</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">function</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><span class="pre">str</span></span></em>, <em class="sig-param"><span class="o"><span class="pre">*</span></span><span class="n"><span class="pre">args</span></span></em><span class="sig-paren">)</span> <span class="sig-return"><span class="sig-return-icon">&#x2192;</span> <span class="sig-return-typehint"><span class="pre">ExpressionInterface</span></span></span><a class="headerlink" href="#sql_smith.functions.func" title="Permalink to this definition">¶</a></dt>
 <dd><p>Create a function.</p>
 <div class="doctest highlight-default notranslate"><div class="highlight"><pre><span></span><span class="gp">&gt;&gt;&gt; </span><span class="n">func</span><span class="p">(</span><span class="s1">&#39;COUNT&#39;</span><span class="p">,</span> <span class="s1">&#39;user.id&#39;</span><span class="p">)</span>  <span class="c1"># COUNT(&quot;users&quot;.&quot;id&quot;)</span>
 </pre></div>
@@ -291,8 +291,8 @@ True is translated to 1, False to 0.</p>
 </dd></dl>
 
 <dl class="py function">
-<dt id="sql_smith.functions.group">
-<code class="sig-prename descclassname"><span class="pre">sql_smith.functions.</span></code><code class="sig-name descname"><span class="pre">group</span></code><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">c</span></span><span class="p"><span class="pre">:</span></span> <span class="n"><span class="pre">CriteriaInterface</span></span></em><span class="sig-paren">)</span> &#x2192; <span class="pre">CriteriaInterface</span><a class="headerlink" href="#sql_smith.functions.group" title="Permalink to this definition">¶</a></dt>
+<dt class="sig sig-object py" id="sql_smith.functions.group">
+<span class="sig-prename descclassname"><span class="pre">sql_smith.functions.</span></span><span class="sig-name descname"><span class="pre">group</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">c</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><span class="pre">CriteriaInterface</span></span></em><span class="sig-paren">)</span> <span class="sig-return"><span class="sig-return-icon">&#x2192;</span> <span class="sig-return-typehint"><span class="pre">CriteriaInterface</span></span></span><a class="headerlink" href="#sql_smith.functions.group" title="Permalink to this definition">¶</a></dt>
 <dd><p>Create a group of criteria.</p>
 <div class="doctest highlight-default notranslate"><div class="highlight"><pre><span></span><span class="gp">&gt;&gt;&gt; </span><span class="n">group</span><span class="p">(</span>
 <span class="gp">&gt;&gt;&gt; </span>    <span class="n">field</span><span class="p">(</span><span class="s1">&#39;username&#39;</span><span class="p">)</span><span class="o">.</span><span class="n">eq</span><span class="p">(</span><span class="s1">&#39;tom&#39;</span><span class="p">)</span>
@@ -306,8 +306,8 @@ True is translated to 1, False to 0.</p>
 </dd></dl>
 
 <dl class="py function">
-<dt id="sql_smith.functions.identify">
-<code class="sig-prename descclassname"><span class="pre">sql_smith.functions.</span></code><code class="sig-name descname"><span class="pre">identify</span></code><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">name</span></span></em><span class="sig-paren">)</span> &#x2192; <span class="pre">sql_smith.interfaces.statement_interface.StatementInterface</span><a class="headerlink" href="#sql_smith.functions.identify" title="Permalink to this definition">¶</a></dt>
+<dt class="sig sig-object py" id="sql_smith.functions.identify">
+<span class="sig-prename descclassname"><span class="pre">sql_smith.functions.</span></span><span class="sig-name descname"><span class="pre">identify</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">name</span></span></em><span class="sig-paren">)</span> <span class="sig-return"><span class="sig-return-icon">&#x2192;</span> <span class="sig-return-typehint"><span class="pre">StatementInterface</span></span></span><a class="headerlink" href="#sql_smith.functions.identify" title="Permalink to this definition">¶</a></dt>
 <dd><p>Identify a name.</p>
 <div class="doctest highlight-default notranslate"><div class="highlight"><pre><span></span><span class="gp">&gt;&gt;&gt; </span><span class="n">identify</span><span class="p">(</span><span class="s1">&#39;users.id&#39;</span><span class="p">)</span>  <span class="c1"># &quot;users&quot;.&quot;id&quot;</span>
 </pre></div>
@@ -315,8 +315,8 @@ True is translated to 1, False to 0.</p>
 </dd></dl>
 
 <dl class="py function">
-<dt id="sql_smith.functions.identify_all">
-<code class="sig-prename descclassname"><span class="pre">sql_smith.functions.</span></code><code class="sig-name descname"><span class="pre">identify_all</span></code><span class="sig-paren">(</span><em class="sig-param"><span class="o"><span class="pre">*</span></span><span class="n"><span class="pre">names</span></span></em><span class="sig-paren">)</span> &#x2192; <span class="pre">Tuple</span><a class="headerlink" href="#sql_smith.functions.identify_all" title="Permalink to this definition">¶</a></dt>
+<dt class="sig sig-object py" id="sql_smith.functions.identify_all">
+<span class="sig-prename descclassname"><span class="pre">sql_smith.functions.</span></span><span class="sig-name descname"><span class="pre">identify_all</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="o"><span class="pre">*</span></span><span class="n"><span class="pre">names</span></span></em><span class="sig-paren">)</span> <span class="sig-return"><span class="sig-return-icon">&#x2192;</span> <span class="sig-return-typehint"><span class="pre">tuple</span></span></span><a class="headerlink" href="#sql_smith.functions.identify_all" title="Permalink to this definition">¶</a></dt>
 <dd><p>Identify all names.</p>
 <div class="doctest highlight-default notranslate"><div class="highlight"><pre><span></span><span class="gp">&gt;&gt;&gt; </span><span class="n">identify_all</span><span class="p">(</span><span class="s1">&#39;id&#39;</span><span class="p">,</span> <span class="s1">&#39;username&#39;</span><span class="p">)</span>  <span class="c1"># (&quot;id&quot;, &quot;username&quot;)</span>
 </pre></div>
@@ -324,8 +324,8 @@ True is translated to 1, False to 0.</p>
 </dd></dl>
 
 <dl class="py function">
-<dt id="sql_smith.functions.listing">
-<code class="sig-prename descclassname"><span class="pre">sql_smith.functions.</span></code><code class="sig-name descname"><span class="pre">listing</span></code><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">values</span></span><span class="p"><span class="pre">:</span></span> <span class="n"><span class="pre">Union</span><span class="p"><span class="pre">[</span></span><span class="pre">Tuple</span><span class="p"><span class="pre">,</span> </span><span class="pre">List</span><span class="p"><span class="pre">]</span></span></span></em>, <em class="sig-param"><span class="n"><span class="pre">separator</span></span><span class="p"><span class="pre">:</span></span> <span class="n"><span class="pre">str</span></span> <span class="o"><span class="pre">=</span></span> <span class="default_value"><span class="pre">',</span> <span class="pre">'</span></span></em><span class="sig-paren">)</span> &#x2192; <span class="pre">sql_smith.partial.listing.Listing</span><a class="headerlink" href="#sql_smith.functions.listing" title="Permalink to this definition">¶</a></dt>
+<dt class="sig sig-object py" id="sql_smith.functions.listing">
+<span class="sig-prename descclassname"><span class="pre">sql_smith.functions.</span></span><span class="sig-name descname"><span class="pre">listing</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">values</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><span class="pre">tuple</span><span class="w"> </span><span class="p"><span class="pre">|</span></span><span class="w"> </span><span class="pre">list</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">separator</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><span class="pre">str</span></span><span class="w"> </span><span class="o"><span class="pre">=</span></span><span class="w"> </span><span class="default_value"><span class="pre">',</span> <span class="pre">'</span></span></em><span class="sig-paren">)</span> <span class="sig-return"><span class="sig-return-icon">&#x2192;</span> <span class="sig-return-typehint"><span class="pre">Listing</span></span></span><a class="headerlink" href="#sql_smith.functions.listing" title="Permalink to this definition">¶</a></dt>
 <dd><p>Create a listing.</p>
 <div class="doctest highlight-default notranslate"><div class="highlight"><pre><span></span><span class="gp">&gt;&gt;&gt; </span><span class="n">listing</span><span class="p">((</span><span class="mi">1</span><span class="p">,</span> <span class="mi">1</span><span class="p">,</span> <span class="mi">2</span><span class="p">,</span> <span class="mi">3</span><span class="p">,</span> <span class="mi">5</span><span class="p">))</span>  <span class="c1"># ?, ?, ?, ?, ?</span>
 <span class="gp">&gt;&gt;&gt; </span><span class="n">listing</span><span class="p">(</span><span class="n">identify_all</span><span class="p">(</span><span class="s1">&#39;id&#39;</span><span class="p">,</span> <span class="s1">&#39;username&#39;</span><span class="p">,</span> <span class="s1">&#39;email&#39;</span><span class="p">))</span>  <span class="c1"># &quot;id&quot;, &quot;username&quot;, &quot;email&quot;</span>
@@ -334,26 +334,26 @@ True is translated to 1, False to 0.</p>
 </dd></dl>
 
 <dl class="py function">
-<dt id="sql_smith.functions.literal">
-<code class="sig-prename descclassname"><span class="pre">sql_smith.functions.</span></code><code class="sig-name descname"><span class="pre">literal</span></code><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">value</span></span></em><span class="sig-paren">)</span> &#x2192; <span class="pre">sql_smith.interfaces.statement_interface.StatementInterface</span><a class="headerlink" href="#sql_smith.functions.literal" title="Permalink to this definition">¶</a></dt>
+<dt class="sig sig-object py" id="sql_smith.functions.literal">
+<span class="sig-prename descclassname"><span class="pre">sql_smith.functions.</span></span><span class="sig-name descname"><span class="pre">literal</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">value</span></span></em><span class="sig-paren">)</span> <span class="sig-return"><span class="sig-return-icon">&#x2192;</span> <span class="sig-return-typehint"><span class="pre">StatementInterface</span></span></span><a class="headerlink" href="#sql_smith.functions.literal" title="Permalink to this definition">¶</a></dt>
 <dd><p>Create a literal.</p>
 </dd></dl>
 
 <dl class="py function">
-<dt id="sql_smith.functions.on">
-<code class="sig-prename descclassname"><span class="pre">sql_smith.functions.</span></code><code class="sig-name descname"><span class="pre">on</span></code><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">left</span></span><span class="p"><span class="pre">:</span></span> <span class="n"><span class="pre">str</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">right</span></span><span class="p"><span class="pre">:</span></span> <span class="n"><span class="pre">str</span></span></em><span class="sig-paren">)</span><a class="headerlink" href="#sql_smith.functions.on" title="Permalink to this definition">¶</a></dt>
+<dt class="sig sig-object py" id="sql_smith.functions.on">
+<span class="sig-prename descclassname"><span class="pre">sql_smith.functions.</span></span><span class="sig-name descname"><span class="pre">on</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">left</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><span class="pre">str</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">right</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><span class="pre">str</span></span></em><span class="sig-paren">)</span><a class="headerlink" href="#sql_smith.functions.on" title="Permalink to this definition">¶</a></dt>
 <dd><p>Create an on clause.</p>
 </dd></dl>
 
 <dl class="py function">
-<dt id="sql_smith.functions.order">
-<code class="sig-prename descclassname"><span class="pre">sql_smith.functions.</span></code><code class="sig-name descname"><span class="pre">order</span></code><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">column</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">direction</span></span><span class="p"><span class="pre">:</span></span> <span class="n"><span class="pre">Optional</span><span class="p"><span class="pre">[</span></span><span class="pre">str</span><span class="p"><span class="pre">]</span></span></span> <span class="o"><span class="pre">=</span></span> <span class="default_value"><span class="pre">None</span></span></em><span class="sig-paren">)</span> &#x2192; <span class="pre">sql_smith.interfaces.statement_interface.StatementInterface</span><a class="headerlink" href="#sql_smith.functions.order" title="Permalink to this definition">¶</a></dt>
+<dt class="sig sig-object py" id="sql_smith.functions.order">
+<span class="sig-prename descclassname"><span class="pre">sql_smith.functions.</span></span><span class="sig-name descname"><span class="pre">order</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">column</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">direction</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><span class="pre">str</span><span class="w"> </span><span class="p"><span class="pre">|</span></span><span class="w"> </span><span class="pre">None</span></span><span class="w"> </span><span class="o"><span class="pre">=</span></span><span class="w"> </span><span class="default_value"><span class="pre">None</span></span></em><span class="sig-paren">)</span> <span class="sig-return"><span class="sig-return-icon">&#x2192;</span> <span class="sig-return-typehint"><span class="pre">StatementInterface</span></span></span><a class="headerlink" href="#sql_smith.functions.order" title="Permalink to this definition">¶</a></dt>
 <dd><p>Create an order clause.</p>
 </dd></dl>
 
 <dl class="py function">
-<dt id="sql_smith.functions.param">
-<code class="sig-prename descclassname"><span class="pre">sql_smith.functions.</span></code><code class="sig-name descname"><span class="pre">param</span></code><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">value</span></span></em><span class="sig-paren">)</span> &#x2192; <span class="pre">sql_smith.interfaces.statement_interface.StatementInterface</span><a class="headerlink" href="#sql_smith.functions.param" title="Permalink to this definition">¶</a></dt>
+<dt class="sig sig-object py" id="sql_smith.functions.param">
+<span class="sig-prename descclassname"><span class="pre">sql_smith.functions.</span></span><span class="sig-name descname"><span class="pre">param</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">value</span></span></em><span class="sig-paren">)</span> <span class="sig-return"><span class="sig-return-icon">&#x2192;</span> <span class="sig-return-typehint"><span class="pre">StatementInterface</span></span></span><a class="headerlink" href="#sql_smith.functions.param" title="Permalink to this definition">¶</a></dt>
 <dd><p>Create a parameter.</p>
 <div class="doctest highlight-default notranslate"><div class="highlight"><pre><span></span><span class="gp">&gt;&gt;&gt; </span><span class="n">func</span><span class="p">(</span><span class="s1">&#39;POINT&#39;</span><span class="p">,</span> <span class="n">param</span><span class="p">(</span><span class="mi">1</span><span class="p">),</span> <span class="n">param</span><span class="p">(</span><span class="mi">2</span><span class="p">))</span>  <span class="c1"># POINT(? , ?)</span>
 </pre></div>
@@ -361,181 +361,189 @@ True is translated to 1, False to 0.</p>
 </dd></dl>
 
 <dl class="py function">
-<dt id="sql_smith.functions.search">
-<code class="sig-prename descclassname"><span class="pre">sql_smith.functions.</span></code><code class="sig-name descname"><span class="pre">search</span></code><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">name</span></span></em><span class="sig-paren">)</span><a class="headerlink" href="#sql_smith.functions.search" title="Permalink to this definition">¶</a></dt>
+<dt class="sig sig-object py" id="sql_smith.functions.search">
+<span class="sig-prename descclassname"><span class="pre">sql_smith.functions.</span></span><span class="sig-name descname"><span class="pre">search</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">name</span></span></em><span class="sig-paren">)</span><a class="headerlink" href="#sql_smith.functions.search" title="Permalink to this definition">¶</a></dt>
 <dd><p>Start a LIKE clause.</p>
 <div class="doctest highlight-default notranslate"><div class="highlight"><pre><span></span><span class="gp">&gt;&gt;&gt; </span><span class="n">search</span><span class="p">(</span><span class="s1">&#39;username&#39;</span><span class="p">)</span><span class="o">.</span><span class="n">contains</span><span class="p">(</span><span class="s1">&#39;admin&#39;</span><span class="p">)</span>  <span class="c1"># &quot;username&quot; LIKE &#39;%admin%&#39;</span>
 </pre></div>
 </div>
 </dd></dl>
 
-</div>
-<div class="section" id="queries">
-<h2>Queries<a class="headerlink" href="#queries" title="Permalink to this headline">¶</a></h2>
+</section>
+<section id="queries">
+<h2>Queries<a class="headerlink" href="#queries" title="Permalink to this heading">¶</a></h2>
 <dl class="py class">
-<dt id="sql_smith.query.AbstractQuery">
-<em class="property"><span class="pre">class</span> </em><code class="sig-prename descclassname"><span class="pre">sql_smith.query.</span></code><code class="sig-name descname"><span class="pre">AbstractQuery</span></code><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">engine</span></span><span class="p"><span class="pre">:</span></span> <span class="n"><span class="pre">sql_smith.interfaces.engine_interface.EngineInterface</span></span></em><span class="sig-paren">)</span><a class="headerlink" href="#sql_smith.query.AbstractQuery" title="Permalink to this definition">¶</a></dt>
+<dt class="sig sig-object py" id="sql_smith.query.AbstractQuery">
+<em class="property"><span class="pre">class</span><span class="w"> </span></em><span class="sig-prename descclassname"><span class="pre">sql_smith.query.</span></span><span class="sig-name descname"><span class="pre">AbstractQuery</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">engine</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><span class="pre">EngineInterface</span></span></em><span class="sig-paren">)</span><a class="headerlink" href="#sql_smith.query.AbstractQuery" title="Permalink to this definition">¶</a></dt>
 <dd><p>Base class for queries.</p>
 <dl class="py method">
-<dt id="sql_smith.query.AbstractQuery.compile">
-<code class="sig-name descname"><span class="pre">compile</span></code><span class="sig-paren">(</span><span class="sig-paren">)</span> &#x2192; <span class="pre">sql_smith.query.query.Query</span><a class="headerlink" href="#sql_smith.query.AbstractQuery.compile" title="Permalink to this definition">¶</a></dt>
+<dt class="sig sig-object py" id="sql_smith.query.AbstractQuery.compile">
+<span class="sig-name descname"><span class="pre">compile</span></span><span class="sig-paren">(</span><span class="sig-paren">)</span> <span class="sig-return"><span class="sig-return-icon">&#x2192;</span> <span class="sig-return-typehint"><a class="reference internal" href="#sql_smith.query.Query" title="sql_smith.query.query.Query"><span class="pre">Query</span></a></span></span><a class="headerlink" href="#sql_smith.query.AbstractQuery.compile" title="Permalink to this definition">¶</a></dt>
 <dd><p>Compiles the query and returns the Query object</p>
 </dd></dl>
 
 </dd></dl>
 
 <dl class="py class">
-<dt id="sql_smith.query.DeleteQuery">
-<em class="property"><span class="pre">class</span> </em><code class="sig-prename descclassname"><span class="pre">sql_smith.query.</span></code><code class="sig-name descname"><span class="pre">DeleteQuery</span></code><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">engine</span></span><span class="p"><span class="pre">:</span></span> <span class="n"><span class="pre">EngineInterface</span></span></em><span class="sig-paren">)</span><a class="headerlink" href="#sql_smith.query.DeleteQuery" title="Permalink to this definition">¶</a></dt>
+<dt class="sig sig-object py" id="sql_smith.query.DeleteQuery">
+<em class="property"><span class="pre">class</span><span class="w"> </span></em><span class="sig-prename descclassname"><span class="pre">sql_smith.query.</span></span><span class="sig-name descname"><span class="pre">DeleteQuery</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">engine</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><span class="pre">EngineInterface</span></span></em><span class="sig-paren">)</span><a class="headerlink" href="#sql_smith.query.DeleteQuery" title="Permalink to this definition">¶</a></dt>
 <dd><p>Implements the DELETE query.</p>
 </dd></dl>
 
 <dl class="py class">
-<dt id="sql_smith.query.InsertQuery">
-<em class="property"><span class="pre">class</span> </em><code class="sig-prename descclassname"><span class="pre">sql_smith.query.</span></code><code class="sig-name descname"><span class="pre">InsertQuery</span></code><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">engine</span></span><span class="p"><span class="pre">:</span></span> <span class="n"><span class="pre">EngineInterface</span></span></em><span class="sig-paren">)</span><a class="headerlink" href="#sql_smith.query.InsertQuery" title="Permalink to this definition">¶</a></dt>
+<dt class="sig sig-object py" id="sql_smith.query.InsertQuery">
+<em class="property"><span class="pre">class</span><span class="w"> </span></em><span class="sig-prename descclassname"><span class="pre">sql_smith.query.</span></span><span class="sig-name descname"><span class="pre">InsertQuery</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">engine</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><span class="pre">EngineInterface</span></span></em><span class="sig-paren">)</span><a class="headerlink" href="#sql_smith.query.InsertQuery" title="Permalink to this definition">¶</a></dt>
 <dd><p>Implements the INSERT query.</p>
 <dl class="py method">
-<dt id="sql_smith.query.InsertQuery.columns">
-<code class="sig-name descname"><span class="pre">columns</span></code><span class="sig-paren">(</span><em class="sig-param"><span class="o"><span class="pre">*</span></span><span class="n"><span class="pre">columns</span></span></em><span class="sig-paren">)</span> &#x2192; <span class="pre">sql_smith.query.insert_query.InsertQuery</span><a class="headerlink" href="#sql_smith.query.InsertQuery.columns" title="Permalink to this definition">¶</a></dt>
+<dt class="sig sig-object py" id="sql_smith.query.InsertQuery.columns">
+<span class="sig-name descname"><span class="pre">columns</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="o"><span class="pre">*</span></span><span class="n"><span class="pre">columns</span></span></em><span class="sig-paren">)</span> <span class="sig-return"><span class="sig-return-icon">&#x2192;</span> <span class="sig-return-typehint"><a class="reference internal" href="#sql_smith.query.InsertQuery" title="sql_smith.query.insert_query.InsertQuery"><span class="pre">InsertQuery</span></a></span></span><a class="headerlink" href="#sql_smith.query.InsertQuery.columns" title="Permalink to this definition">¶</a></dt>
 <dd><p>Sets the columns to insert.</p>
 </dd></dl>
 
 <dl class="py method">
-<dt id="sql_smith.query.InsertQuery.into">
-<code class="sig-name descname"><span class="pre">into</span></code><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">table</span></span><span class="p"><span class="pre">:</span></span> <span class="n"><span class="pre">str</span></span></em><span class="sig-paren">)</span> &#x2192; <span class="pre">sql_smith.query.insert_query.InsertQuery</span><a class="headerlink" href="#sql_smith.query.InsertQuery.into" title="Permalink to this definition">¶</a></dt>
+<dt class="sig sig-object py" id="sql_smith.query.InsertQuery.into">
+<span class="sig-name descname"><span class="pre">into</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">table</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><span class="pre">str</span></span></em><span class="sig-paren">)</span> <span class="sig-return"><span class="sig-return-icon">&#x2192;</span> <span class="sig-return-typehint"><a class="reference internal" href="#sql_smith.query.InsertQuery" title="sql_smith.query.insert_query.InsertQuery"><span class="pre">InsertQuery</span></a></span></span><a class="headerlink" href="#sql_smith.query.InsertQuery.into" title="Permalink to this definition">¶</a></dt>
 <dd><p>Sets the table.</p>
 </dd></dl>
 
 <dl class="py method">
-<dt id="sql_smith.query.InsertQuery.map">
-<code class="sig-name descname"><span class="pre">map</span></code><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">column_values</span></span><span class="p"><span class="pre">:</span></span> <span class="n"><span class="pre">Dict</span><span class="p"><span class="pre">[</span></span><span class="pre">str</span><span class="p"><span class="pre">,</span> </span><span class="pre">Any</span><span class="p"><span class="pre">]</span></span></span></em><span class="sig-paren">)</span><a class="headerlink" href="#sql_smith.query.InsertQuery.map" title="Permalink to this definition">¶</a></dt>
+<dt class="sig sig-object py" id="sql_smith.query.InsertQuery.map">
+<span class="sig-name descname"><span class="pre">map</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">column_values</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><span class="pre">Dict</span><span class="p"><span class="pre">[</span></span><span class="pre">str</span><span class="p"><span class="pre">,</span></span><span class="w"> </span><span class="pre">Any</span><span class="p"><span class="pre">]</span></span></span></em><span class="sig-paren">)</span><a class="headerlink" href="#sql_smith.query.InsertQuery.map" title="Permalink to this definition">¶</a></dt>
 <dd><p>Maps a dictionary to columns and values.</p>
 </dd></dl>
 
 <dl class="py method">
-<dt id="sql_smith.query.InsertQuery.values">
-<code class="sig-name descname"><span class="pre">values</span></code><span class="sig-paren">(</span><em class="sig-param"><span class="o"><span class="pre">*</span></span><span class="n"><span class="pre">values</span></span></em><span class="sig-paren">)</span> &#x2192; <span class="pre">sql_smith.query.insert_query.InsertQuery</span><a class="headerlink" href="#sql_smith.query.InsertQuery.values" title="Permalink to this definition">¶</a></dt>
+<dt class="sig sig-object py" id="sql_smith.query.InsertQuery.values">
+<span class="sig-name descname"><span class="pre">values</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="o"><span class="pre">*</span></span><span class="n"><span class="pre">values</span></span></em><span class="sig-paren">)</span> <span class="sig-return"><span class="sig-return-icon">&#x2192;</span> <span class="sig-return-typehint"><a class="reference internal" href="#sql_smith.query.InsertQuery" title="sql_smith.query.insert_query.InsertQuery"><span class="pre">InsertQuery</span></a></span></span><a class="headerlink" href="#sql_smith.query.InsertQuery.values" title="Permalink to this definition">¶</a></dt>
 <dd><p>Appends values.</p>
 </dd></dl>
 
 </dd></dl>
 
 <dl class="py class">
-<dt id="sql_smith.query.Query">
-<em class="property"><span class="pre">class</span> </em><code class="sig-prename descclassname"><span class="pre">sql_smith.query.</span></code><code class="sig-name descname"><span class="pre">Query</span></code><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">sql</span></span><span class="p"><span class="pre">:</span></span> <span class="n"><span class="pre">str</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">params</span></span><span class="p"><span class="pre">:</span></span> <span class="n"><span class="pre">Tuple</span></span></em><span class="sig-paren">)</span><a class="headerlink" href="#sql_smith.query.Query" title="Permalink to this definition">¶</a></dt>
+<dt class="sig sig-object py" id="sql_smith.query.Query">
+<em class="property"><span class="pre">class</span><span class="w"> </span></em><span class="sig-prename descclassname"><span class="pre">sql_smith.query.</span></span><span class="sig-name descname"><span class="pre">Query</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">sql</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><span class="pre">str</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">params</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><span class="pre">tuple</span></span></em><span class="sig-paren">)</span><a class="headerlink" href="#sql_smith.query.Query" title="Permalink to this definition">¶</a></dt>
 <dd><p>The result of a compile.</p>
-<dl class="py method">
-<dt id="sql_smith.query.Query.params">
-<em class="property"><span class="pre">property</span> </em><code class="sig-name descname"><span class="pre">params</span></code><a class="headerlink" href="#sql_smith.query.Query.params" title="Permalink to this definition">¶</a></dt>
+<dl class="py property">
+<dt class="sig sig-object py" id="sql_smith.query.Query.params">
+<em class="property"><span class="pre">property</span><span class="w"> </span></em><span class="sig-name descname"><span class="pre">params</span></span><em class="property"><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="pre">tuple</span></em><a class="headerlink" href="#sql_smith.query.Query.params" title="Permalink to this definition">¶</a></dt>
 <dd><p>Returns all parameters of the SQL statement.</p>
 </dd></dl>
 
-<dl class="py method">
-<dt id="sql_smith.query.Query.sql">
-<em class="property"><span class="pre">property</span> </em><code class="sig-name descname"><span class="pre">sql</span></code><a class="headerlink" href="#sql_smith.query.Query.sql" title="Permalink to this definition">¶</a></dt>
+<dl class="py property">
+<dt class="sig sig-object py" id="sql_smith.query.Query.sql">
+<em class="property"><span class="pre">property</span><span class="w"> </span></em><span class="sig-name descname"><span class="pre">sql</span></span><em class="property"><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="pre">str</span></em><a class="headerlink" href="#sql_smith.query.Query.sql" title="Permalink to this definition">¶</a></dt>
 <dd><p>Returns the compiled SQL statement as a string.</p>
 </dd></dl>
 
 </dd></dl>
 
 <dl class="py class">
-<dt id="sql_smith.query.SelectQuery">
-<em class="property"><span class="pre">class</span> </em><code class="sig-prename descclassname"><span class="pre">sql_smith.query.</span></code><code class="sig-name descname"><span class="pre">SelectQuery</span></code><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">engine</span></span><span class="p"><span class="pre">:</span></span> <span class="n"><span class="pre">EngineInterface</span></span></em><span class="sig-paren">)</span><a class="headerlink" href="#sql_smith.query.SelectQuery" title="Permalink to this definition">¶</a></dt>
+<dt class="sig sig-object py" id="sql_smith.query.SelectQuery">
+<em class="property"><span class="pre">class</span><span class="w"> </span></em><span class="sig-prename descclassname"><span class="pre">sql_smith.query.</span></span><span class="sig-name descname"><span class="pre">SelectQuery</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">engine</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><span class="pre">EngineInterface</span></span></em><span class="sig-paren">)</span><a class="headerlink" href="#sql_smith.query.SelectQuery" title="Permalink to this definition">¶</a></dt>
 <dd><p>Implements a SELECT query.</p>
 <dl class="py method">
-<dt id="sql_smith.query.SelectQuery.add_columns">
-<code class="sig-name descname"><span class="pre">add_columns</span></code><span class="sig-paren">(</span><em class="sig-param"><span class="o"><span class="pre">*</span></span><span class="n"><span class="pre">columns</span></span></em><span class="sig-paren">)</span><a class="headerlink" href="#sql_smith.query.SelectQuery.add_columns" title="Permalink to this definition">¶</a></dt>
+<dt class="sig sig-object py" id="sql_smith.query.SelectQuery.add_columns">
+<span class="sig-name descname"><span class="pre">add_columns</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="o"><span class="pre">*</span></span><span class="n"><span class="pre">columns</span></span></em><span class="sig-paren">)</span><a class="headerlink" href="#sql_smith.query.SelectQuery.add_columns" title="Permalink to this definition">¶</a></dt>
 <dd><p>Add columns to the selection.</p>
 </dd></dl>
 
 <dl class="py method">
-<dt id="sql_smith.query.SelectQuery.columns">
-<code class="sig-name descname"><span class="pre">columns</span></code><span class="sig-paren">(</span><em class="sig-param"><span class="o"><span class="pre">*</span></span><span class="n"><span class="pre">columns</span></span></em><span class="sig-paren">)</span> &#x2192; <span class="pre">sql_smith.query.select_query.SelectQuery</span><a class="headerlink" href="#sql_smith.query.SelectQuery.columns" title="Permalink to this definition">¶</a></dt>
+<dt class="sig sig-object py" id="sql_smith.query.SelectQuery.columns">
+<span class="sig-name descname"><span class="pre">columns</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="o"><span class="pre">*</span></span><span class="n"><span class="pre">columns</span></span></em><span class="sig-paren">)</span> <span class="sig-return"><span class="sig-return-icon">&#x2192;</span> <span class="sig-return-typehint"><a class="reference internal" href="#sql_smith.query.SelectQuery" title="sql_smith.query.select_query.SelectQuery"><span class="pre">SelectQuery</span></a></span></span><a class="headerlink" href="#sql_smith.query.SelectQuery.columns" title="Permalink to this definition">¶</a></dt>
 <dd><p>Set the columns to select.</p>
 </dd></dl>
 
 <dl class="py method">
-<dt id="sql_smith.query.SelectQuery.distinct">
-<code class="sig-name descname"><span class="pre">distinct</span></code><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">state</span></span><span class="p"><span class="pre">:</span></span> <span class="n"><span class="pre">bool</span></span> <span class="o"><span class="pre">=</span></span> <span class="default_value"><span class="pre">True</span></span></em><span class="sig-paren">)</span> &#x2192; <span class="pre">sql_smith.query.select_query.SelectQuery</span><a class="headerlink" href="#sql_smith.query.SelectQuery.distinct" title="Permalink to this definition">¶</a></dt>
+<dt class="sig sig-object py" id="sql_smith.query.SelectQuery.distinct">
+<span class="sig-name descname"><span class="pre">distinct</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">state</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><span class="pre">bool</span></span><span class="w"> </span><span class="o"><span class="pre">=</span></span><span class="w"> </span><span class="default_value"><span class="pre">True</span></span></em><span class="sig-paren">)</span> <span class="sig-return"><span class="sig-return-icon">&#x2192;</span> <span class="sig-return-typehint"><a class="reference internal" href="#sql_smith.query.SelectQuery" title="sql_smith.query.select_query.SelectQuery"><span class="pre">SelectQuery</span></a></span></span><a class="headerlink" href="#sql_smith.query.SelectQuery.distinct" title="Permalink to this definition">¶</a></dt>
 <dd><p>Add or remove DISTINCT.</p>
 </dd></dl>
 
 <dl class="py method">
-<dt id="sql_smith.query.SelectQuery.full_join">
-<code class="sig-name descname"><span class="pre">full_join</span></code><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">table</span></span><span class="p"><span class="pre">:</span></span> <span class="n"><span class="pre">str</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">criteria</span></span><span class="p"><span class="pre">:</span></span> <span class="n"><span class="pre">CriteriaInterface</span></span></em><span class="sig-paren">)</span> &#x2192; <a class="reference internal" href="#sql_smith.query.SelectQuery" title="sql_smith.query.SelectQuery"><span class="pre">SelectQuery</span></a><a class="headerlink" href="#sql_smith.query.SelectQuery.full_join" title="Permalink to this definition">¶</a></dt>
+<dt class="sig sig-object py" id="sql_smith.query.SelectQuery.full_join">
+<span class="sig-name descname"><span class="pre">full_join</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">table</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><span class="pre">str</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">criteria</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><span class="pre">CriteriaInterface</span></span></em><span class="sig-paren">)</span> <span class="sig-return"><span class="sig-return-icon">&#x2192;</span> <span class="sig-return-typehint"><a class="reference internal" href="#sql_smith.query.SelectQuery" title="sql_smith.query.SelectQuery"><span class="pre">SelectQuery</span></a></span></span><a class="headerlink" href="#sql_smith.query.SelectQuery.full_join" title="Permalink to this definition">¶</a></dt>
 <dd><p>Add a FULL join.</p>
 </dd></dl>
 
 <dl class="py method">
-<dt id="sql_smith.query.SelectQuery.group_by">
-<code class="sig-name descname"><span class="pre">group_by</span></code><span class="sig-paren">(</span><em class="sig-param"><span class="o"><span class="pre">*</span></span><span class="n"><span class="pre">columns</span></span></em><span class="sig-paren">)</span><a class="headerlink" href="#sql_smith.query.SelectQuery.group_by" title="Permalink to this definition">¶</a></dt>
+<dt class="sig sig-object py" id="sql_smith.query.SelectQuery.group_by">
+<span class="sig-name descname"><span class="pre">group_by</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="o"><span class="pre">*</span></span><span class="n"><span class="pre">columns</span></span></em><span class="sig-paren">)</span><a class="headerlink" href="#sql_smith.query.SelectQuery.group_by" title="Permalink to this definition">¶</a></dt>
 <dd><p>Add a GROUP BY clause.</p>
 </dd></dl>
 
 <dl class="py method">
-<dt id="sql_smith.query.SelectQuery.having">
-<code class="sig-name descname"><span class="pre">having</span></code><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">criteria</span></span><span class="p"><span class="pre">:</span></span> <span class="n"><span class="pre">CriteriaInterface</span></span></em><span class="sig-paren">)</span><a class="headerlink" href="#sql_smith.query.SelectQuery.having" title="Permalink to this definition">¶</a></dt>
+<dt class="sig sig-object py" id="sql_smith.query.SelectQuery.having">
+<span class="sig-name descname"><span class="pre">having</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">criteria</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><span class="pre">CriteriaInterface</span></span></em><span class="sig-paren">)</span><a class="headerlink" href="#sql_smith.query.SelectQuery.having" title="Permalink to this definition">¶</a></dt>
 <dd><p>Add an HAVING clause.</p>
 </dd></dl>
 
 <dl class="py method">
-<dt id="sql_smith.query.SelectQuery.inner_join">
-<code class="sig-name descname"><span class="pre">inner_join</span></code><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">table</span></span><span class="p"><span class="pre">:</span></span> <span class="n"><span class="pre">str</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">criteria</span></span><span class="p"><span class="pre">:</span></span> <span class="n"><span class="pre">CriteriaInterface</span></span></em><span class="sig-paren">)</span> &#x2192; <a class="reference internal" href="#sql_smith.query.SelectQuery" title="sql_smith.query.SelectQuery"><span class="pre">SelectQuery</span></a><a class="headerlink" href="#sql_smith.query.SelectQuery.inner_join" title="Permalink to this definition">¶</a></dt>
+<dt class="sig sig-object py" id="sql_smith.query.SelectQuery.inner_join">
+<span class="sig-name descname"><span class="pre">inner_join</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">table</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><span class="pre">str</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">criteria</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><span class="pre">CriteriaInterface</span></span></em><span class="sig-paren">)</span> <span class="sig-return"><span class="sig-return-icon">&#x2192;</span> <span class="sig-return-typehint"><a class="reference internal" href="#sql_smith.query.SelectQuery" title="sql_smith.query.SelectQuery"><span class="pre">SelectQuery</span></a></span></span><a class="headerlink" href="#sql_smith.query.SelectQuery.inner_join" title="Permalink to this definition">¶</a></dt>
 <dd><p>Add an INNER join.</p>
 </dd></dl>
 
 <dl class="py method">
-<dt id="sql_smith.query.SelectQuery.join">
-<code class="sig-name descname"><span class="pre">join</span></code><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">table</span></span><span class="p"><span class="pre">:</span></span> <span class="n"><span class="pre">str</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">criteria</span></span><span class="p"><span class="pre">:</span></span> <span class="n"><span class="pre">CriteriaInterface</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">join_type</span></span><span class="p"><span class="pre">:</span></span> <span class="n"><span class="pre">str</span></span> <span class="o"><span class="pre">=</span></span> <span class="default_value"><span class="pre">''</span></span></em><span class="sig-paren">)</span> &#x2192; <a class="reference internal" href="#sql_smith.query.SelectQuery" title="sql_smith.query.SelectQuery"><span class="pre">SelectQuery</span></a><a class="headerlink" href="#sql_smith.query.SelectQuery.join" title="Permalink to this definition">¶</a></dt>
+<dt class="sig sig-object py" id="sql_smith.query.SelectQuery.join">
+<span class="sig-name descname"><span class="pre">join</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">table</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><span class="pre">str</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">criteria</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><span class="pre">CriteriaInterface</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">join_type</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><span class="pre">str</span></span><span class="w"> </span><span class="o"><span class="pre">=</span></span><span class="w"> </span><span class="default_value"><span class="pre">''</span></span></em><span class="sig-paren">)</span> <span class="sig-return"><span class="sig-return-icon">&#x2192;</span> <span class="sig-return-typehint"><a class="reference internal" href="#sql_smith.query.SelectQuery" title="sql_smith.query.SelectQuery"><span class="pre">SelectQuery</span></a></span></span><a class="headerlink" href="#sql_smith.query.SelectQuery.join" title="Permalink to this definition">¶</a></dt>
 <dd><p>Add a join.</p>
 </dd></dl>
 
 <dl class="py method">
-<dt id="sql_smith.query.SelectQuery.left_join">
-<code class="sig-name descname"><span class="pre">left_join</span></code><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">table</span></span><span class="p"><span class="pre">:</span></span> <span class="n"><span class="pre">str</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">criteria</span></span><span class="p"><span class="pre">:</span></span> <span class="n"><span class="pre">CriteriaInterface</span></span></em><span class="sig-paren">)</span> &#x2192; <a class="reference internal" href="#sql_smith.query.SelectQuery" title="sql_smith.query.SelectQuery"><span class="pre">SelectQuery</span></a><a class="headerlink" href="#sql_smith.query.SelectQuery.left_join" title="Permalink to this definition">¶</a></dt>
+<dt class="sig sig-object py" id="sql_smith.query.SelectQuery.left_join">
+<span class="sig-name descname"><span class="pre">left_join</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">table</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><span class="pre">str</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">criteria</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><span class="pre">CriteriaInterface</span></span></em><span class="sig-paren">)</span> <span class="sig-return"><span class="sig-return-icon">&#x2192;</span> <span class="sig-return-typehint"><a class="reference internal" href="#sql_smith.query.SelectQuery" title="sql_smith.query.SelectQuery"><span class="pre">SelectQuery</span></a></span></span><a class="headerlink" href="#sql_smith.query.SelectQuery.left_join" title="Permalink to this definition">¶</a></dt>
 <dd><p>Add a LEFT join.</p>
 </dd></dl>
 
 <dl class="py method">
-<dt id="sql_smith.query.SelectQuery.right_join">
-<code class="sig-name descname"><span class="pre">right_join</span></code><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">table</span></span><span class="p"><span class="pre">:</span></span> <span class="n"><span class="pre">str</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">criteria</span></span><span class="p"><span class="pre">:</span></span> <span class="n"><span class="pre">CriteriaInterface</span></span></em><span class="sig-paren">)</span> &#x2192; <a class="reference internal" href="#sql_smith.query.SelectQuery" title="sql_smith.query.SelectQuery"><span class="pre">SelectQuery</span></a><a class="headerlink" href="#sql_smith.query.SelectQuery.right_join" title="Permalink to this definition">¶</a></dt>
+<dt class="sig sig-object py" id="sql_smith.query.SelectQuery.right_join">
+<span class="sig-name descname"><span class="pre">right_join</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">table</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><span class="pre">str</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">criteria</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><span class="pre">CriteriaInterface</span></span></em><span class="sig-paren">)</span> <span class="sig-return"><span class="sig-return-icon">&#x2192;</span> <span class="sig-return-typehint"><a class="reference internal" href="#sql_smith.query.SelectQuery" title="sql_smith.query.SelectQuery"><span class="pre">SelectQuery</span></a></span></span><a class="headerlink" href="#sql_smith.query.SelectQuery.right_join" title="Permalink to this definition">¶</a></dt>
 <dd><p>Add a RIGHT join.</p>
+</dd></dl>
+
+<dl class="py method">
+<dt class="sig sig-object py" id="sql_smith.query.SelectQuery.with_">
+<span class="sig-name descname"><span class="pre">with_</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">name</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><span class="pre">str</span><span class="w"> </span><span class="p"><span class="pre">|</span></span><span class="w"> </span><span class="pre">None</span></span><span class="w"> </span><span class="o"><span class="pre">=</span></span><span class="w"> </span><span class="default_value"><span class="pre">None</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">query</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><span class="pre">ExpressionInterface</span><span class="w"> </span><span class="p"><span class="pre">|</span></span><span class="w"> </span><span class="pre">None</span></span><span class="w"> </span><span class="o"><span class="pre">=</span></span><span class="w"> </span><span class="default_value"><span class="pre">None</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">recursive</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><span class="pre">bool</span></span><span class="w"> </span><span class="o"><span class="pre">=</span></span><span class="w"> </span><span class="default_value"><span class="pre">False</span></span></em><span class="sig-paren">)</span> <span class="sig-return"><span class="sig-return-icon">&#x2192;</span> <span class="sig-return-typehint"><a class="reference internal" href="#sql_smith.query.SelectQuery" title="sql_smith.query.select_query.SelectQuery"><span class="pre">SelectQuery</span></a></span></span><a class="headerlink" href="#sql_smith.query.SelectQuery.with_" title="Permalink to this definition">¶</a></dt>
+<dd><p>Add a query as CTE.</p>
+<p>When no name and query is passed, all CTE’s for this query will be removed.
+When no query is passed, the CTE with the given name will be removed.</p>
 </dd></dl>
 
 </dd></dl>
 
 <dl class="py class">
-<dt id="sql_smith.query.UnionQuery">
-<em class="property"><span class="pre">class</span> </em><code class="sig-prename descclassname"><span class="pre">sql_smith.query.</span></code><code class="sig-name descname"><span class="pre">UnionQuery</span></code><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">engine</span></span><span class="p"><span class="pre">:</span></span> <span class="n"><span class="pre">EngineInterface</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">left</span></span><span class="p"><span class="pre">:</span></span> <span class="n"><span class="pre">StatementInterface</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">right</span></span><span class="p"><span class="pre">:</span></span> <span class="n"><span class="pre">StatementInterface</span></span></em><span class="sig-paren">)</span><a class="headerlink" href="#sql_smith.query.UnionQuery" title="Permalink to this definition">¶</a></dt>
+<dt class="sig sig-object py" id="sql_smith.query.UnionQuery">
+<em class="property"><span class="pre">class</span><span class="w"> </span></em><span class="sig-prename descclassname"><span class="pre">sql_smith.query.</span></span><span class="sig-name descname"><span class="pre">UnionQuery</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">engine</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><span class="pre">EngineInterface</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">left</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><span class="pre">StatementInterface</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">right</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><span class="pre">StatementInterface</span></span></em><span class="sig-paren">)</span><a class="headerlink" href="#sql_smith.query.UnionQuery" title="Permalink to this definition">¶</a></dt>
 <dd><p>Implements a union query.</p>
 <dl class="py method">
-<dt id="sql_smith.query.UnionQuery.all">
-<code class="sig-name descname"><span class="pre">all</span></code><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">state</span></span><span class="p"><span class="pre">:</span></span> <span class="n"><span class="pre">bool</span></span> <span class="o"><span class="pre">=</span></span> <span class="default_value"><span class="pre">True</span></span></em><span class="sig-paren">)</span> &#x2192; <span class="pre">sql_smith.query.union_query.UnionQuery</span><a class="headerlink" href="#sql_smith.query.UnionQuery.all" title="Permalink to this definition">¶</a></dt>
+<dt class="sig sig-object py" id="sql_smith.query.UnionQuery.all">
+<span class="sig-name descname"><span class="pre">all</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">state</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><span class="pre">bool</span></span><span class="w"> </span><span class="o"><span class="pre">=</span></span><span class="w"> </span><span class="default_value"><span class="pre">True</span></span></em><span class="sig-paren">)</span> <span class="sig-return"><span class="sig-return-icon">&#x2192;</span> <span class="sig-return-typehint"><a class="reference internal" href="#sql_smith.query.UnionQuery" title="sql_smith.query.union_query.UnionQuery"><span class="pre">UnionQuery</span></a></span></span><a class="headerlink" href="#sql_smith.query.UnionQuery.all" title="Permalink to this definition">¶</a></dt>
 <dd><p>Sets ALL.</p>
 </dd></dl>
 
 </dd></dl>
 
 <dl class="py class">
-<dt id="sql_smith.query.UpdateQuery">
-<em class="property"><span class="pre">class</span> </em><code class="sig-prename descclassname"><span class="pre">sql_smith.query.</span></code><code class="sig-name descname"><span class="pre">UpdateQuery</span></code><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">engine</span></span><span class="p"><span class="pre">:</span></span> <span class="n"><span class="pre">EngineInterface</span></span></em><span class="sig-paren">)</span><a class="headerlink" href="#sql_smith.query.UpdateQuery" title="Permalink to this definition">¶</a></dt>
+<dt class="sig sig-object py" id="sql_smith.query.UpdateQuery">
+<em class="property"><span class="pre">class</span><span class="w"> </span></em><span class="sig-prename descclassname"><span class="pre">sql_smith.query.</span></span><span class="sig-name descname"><span class="pre">UpdateQuery</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">engine</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><span class="pre">EngineInterface</span></span></em><span class="sig-paren">)</span><a class="headerlink" href="#sql_smith.query.UpdateQuery" title="Permalink to this definition">¶</a></dt>
 <dd><p>Implements an UPDATE query.</p>
 <dl class="py method">
-<dt id="sql_smith.query.UpdateQuery.set">
-<code class="sig-name descname"><span class="pre">set</span></code><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">value_dict</span></span><span class="p"><span class="pre">:</span></span> <span class="n"><span class="pre">Dict</span><span class="p"><span class="pre">[</span></span><span class="pre">str</span><span class="p"><span class="pre">,</span> </span><span class="pre">Any</span><span class="p"><span class="pre">]</span></span></span></em><span class="sig-paren">)</span><a class="headerlink" href="#sql_smith.query.UpdateQuery.set" title="Permalink to this definition">¶</a></dt>
+<dt class="sig sig-object py" id="sql_smith.query.UpdateQuery.set">
+<span class="sig-name descname"><span class="pre">set</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">value_dict</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><span class="pre">dict</span><span class="p"><span class="pre">[</span></span><span class="pre">str</span><span class="p"><span class="pre">,</span></span><span class="w"> </span><span class="pre">Any</span><span class="p"><span class="pre">]</span></span></span></em><span class="sig-paren">)</span><a class="headerlink" href="#sql_smith.query.UpdateQuery.set" title="Permalink to this definition">¶</a></dt>
 <dd><p>Sets the column and values with a dictionary.</p>
 </dd></dl>
 
 <dl class="py method">
-<dt id="sql_smith.query.UpdateQuery.table">
-<code class="sig-name descname"><span class="pre">table</span></code><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">table</span></span><span class="p"><span class="pre">:</span></span> <span class="n"><span class="pre">Union</span><span class="p"><span class="pre">[</span></span><span class="pre">str</span><span class="p"><span class="pre">,</span> </span><span class="pre">StatementInterface</span><span class="p"><span class="pre">]</span></span></span></em><span class="sig-paren">)</span> &#x2192; <a class="reference internal" href="#sql_smith.query.UpdateQuery" title="sql_smith.query.UpdateQuery"><span class="pre">UpdateQuery</span></a><a class="headerlink" href="#sql_smith.query.UpdateQuery.table" title="Permalink to this definition">¶</a></dt>
+<dt class="sig sig-object py" id="sql_smith.query.UpdateQuery.table">
+<span class="sig-name descname"><span class="pre">table</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">table</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><span class="pre">str</span><span class="w"> </span><span class="p"><span class="pre">|</span></span><span class="w"> </span><span class="pre">StatementInterface</span></span></em><span class="sig-paren">)</span> <span class="sig-return"><span class="sig-return-icon">&#x2192;</span> <span class="sig-return-typehint"><a class="reference internal" href="#sql_smith.query.UpdateQuery" title="sql_smith.query.UpdateQuery"><span class="pre">UpdateQuery</span></a></span></span><a class="headerlink" href="#sql_smith.query.UpdateQuery.table" title="Permalink to this definition">¶</a></dt>
 <dd><p>Sets the table.</p>
 </dd></dl>
 
 </dd></dl>
 
-</div>
-</div>
+</section>
+</section>
 
 
           </div>
@@ -582,12 +590,12 @@ True is translated to 1, False to 0.</p>
   <h3 id="searchlabel">Quick search</h3>
     <div class="searchformwrapper">
     <form class="search" action="search.html" method="get">
-      <input type="text" name="q" aria-labelledby="searchlabel" />
+      <input type="text" name="q" aria-labelledby="searchlabel" autocomplete="off" autocorrect="off" autocapitalize="off" spellcheck="false"/>
       <input type="submit" value="Go" />
     </form>
     </div>
 </div>
-<script>$('#searchbox').show(0);</script>
+<script>document.getElementById('searchbox').style.display = "block"</script>
 
 
 
@@ -604,8 +612,8 @@ True is translated to 1, False to 0.</p>
       &copy;.
       
       |
-      Powered by <a href="http://sphinx-doc.org/">Sphinx 3.5.4</a>
-      &amp; <a href="https://github.com/bitprophet/alabaster">Alabaster 0.7.12</a>
+      Powered by <a href="http://sphinx-doc.org/">Sphinx 6.2.1</a>
+      &amp; <a href="https://github.com/bitprophet/alabaster">Alabaster 0.7.13</a>
       
     </div>
 

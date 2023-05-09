@@ -1,18 +1,18 @@
 
 <!DOCTYPE html>
 
-<html>
+<html lang="en">
   <head>
     <meta charset="utf-8" />
-    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" /><meta name="generator" content="Docutils 0.18.1: http://docutils.sourceforge.net/" />
+
     <title>Latitude vs sql-smith &#8212; sql-smith  documentation</title>
-    <link rel="stylesheet" href="_static/pygments.css" type="text/css" />
-    <link rel="stylesheet" href="_static/alabaster.css" type="text/css" />
+    <link rel="stylesheet" type="text/css" href="_static/pygments.css" />
+    <link rel="stylesheet" type="text/css" href="_static/alabaster.css" />
     <link rel="stylesheet" type="text/css" href="_static/custom.css" />
-    <script id="documentation_options" data-url_root="./" src="_static/documentation_options.js"></script>
-    <script src="_static/jquery.js"></script>
-    <script src="_static/underscore.js"></script>
+    <script data-url_root="./" id="documentation_options" src="_static/documentation_options.js"></script>
     <script src="_static/doctools.js"></script>
+    <script src="_static/sphinx_highlight.js"></script>
     <link rel="index" title="Index" href="genindex.html" />
     <link rel="search" title="Search" href="search.html" />
     <link rel="prev" title="API" href="api.html" />
@@ -32,24 +32,24 @@
 
           <div class="body" role="main">
             
-  <div class="section" id="latitude-vs-sql-smith">
-<h1>Latitude vs sql-smith<a class="headerlink" href="#latitude-vs-sql-smith" title="Permalink to this headline">¶</a></h1>
+  <section id="latitude-vs-sql-smith">
+<h1>Latitude vs sql-smith<a class="headerlink" href="#latitude-vs-sql-smith" title="Permalink to this heading">¶</a></h1>
 <p>As said in the introduction, sql-smith is a port of the PHP library <a class="reference external" href="https://latitude.shadowhand.com/">Latitude</a>. Due to the
 differences between PHP and Python there are some differences in the implementation.</p>
-<div class="section" id="python-keywords">
-<h2>Python keywords<a class="headerlink" href="#python-keywords" title="Permalink to this headline">¶</a></h2>
+<section id="python-keywords">
+<h2>Python keywords<a class="headerlink" href="#python-keywords" title="Permalink to this heading">¶</a></h2>
 <p><strong>from</strong>, <strong>in</strong>, <strong>and</strong> and <strong>or</strong> are keywords in Python. Keywords can’t be used as method name.
 The rule is to append an underscore to such method names. So from becomes from_, in becomes in_, …</p>
-</div>
-<div class="section" id="parameters">
-<h2>Parameters<a class="headerlink" href="#parameters" title="Permalink to this headline">¶</a></h2>
+</section>
+<section id="parameters">
+<h2>Parameters<a class="headerlink" href="#parameters" title="Permalink to this heading">¶</a></h2>
 <p>Parameters are tuples.</p>
-</div>
-<div class="section" id="naming-conventions">
-<h2>Naming conventions<a class="headerlink" href="#naming-conventions" title="Permalink to this headline">¶</a></h2>
+</section>
+<section id="naming-conventions">
+<h2>Naming conventions<a class="headerlink" href="#naming-conventions" title="Permalink to this heading">¶</a></h2>
 <p>sql-smith uses PEP8. As a consequence, orWhere is named or_where for example.</p>
-</div>
-</div>
+</section>
+</section>
 
 
           </div>
@@ -94,12 +94,12 @@ The rule is to append an underscore to such method names. So from becomes from_,
   <h3 id="searchlabel">Quick search</h3>
     <div class="searchformwrapper">
     <form class="search" action="search.html" method="get">
-      <input type="text" name="q" aria-labelledby="searchlabel" />
+      <input type="text" name="q" aria-labelledby="searchlabel" autocomplete="off" autocorrect="off" autocapitalize="off" spellcheck="false"/>
       <input type="submit" value="Go" />
     </form>
     </div>
 </div>
-<script>$('#searchbox').show(0);</script>
+<script>document.getElementById('searchbox').style.display = "block"</script>
 
 
 
@@ -116,8 +116,8 @@ The rule is to append an underscore to such method names. So from becomes from_,
       &copy;.
       
       |
-      Powered by <a href="http://sphinx-doc.org/">Sphinx 3.5.4</a>
-      &amp; <a href="https://github.com/bitprophet/alabaster">Alabaster 0.7.12</a>
+      Powered by <a href="http://sphinx-doc.org/">Sphinx 6.2.1</a>
+      &amp; <a href="https://github.com/bitprophet/alabaster">Alabaster 0.7.13</a>
       
     </div>
 
