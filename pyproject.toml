@@ -1,6 +1,6 @@
 [tool.poetry]
 name = "sql-smith"
-version = "1.0.2"
+version = "1.1.0"
 description = "sql-smith is an SQL query builder with zero dependencies and a fluent interface."
 authors = ["fbraem <franky.braem@gmail.com>"]
 license = "MIT"

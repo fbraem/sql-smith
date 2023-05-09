@@ -192,7 +192,7 @@ And also the having clause can be applied:
 
 CTE
 ***
-From version 1.0.2, CTE can be used. Create the CTE as a normal select query and use :py:func:`~sql_smith.SelectQuery.with_` 
+From version 1.1.0, CTE can be used. Create the CTE as a normal select query and use :py:func:`~sql_smith.SelectQuery.with_` 
 of :py:class:`~sql_smith.query.SelectQuery` to use it with another query.
 
 .. code-block:: python
