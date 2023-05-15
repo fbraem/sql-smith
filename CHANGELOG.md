@@ -1,5 +1,8 @@
 # Release Notes
 
+## v1.1.1 - 2023-05-15
++ Add is_limited, has_order, has_offset and has_where to SelectQuery
+
 ## v1.1.0 - 2023-05-09
 + Needs Python 3.10 at least
 + Add CTE feature
