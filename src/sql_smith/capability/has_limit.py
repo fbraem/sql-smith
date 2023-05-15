@@ -2,7 +2,7 @@ from sql_smith.functions import literal
 
 
 class HasLimitMixin:
-    def limit(self, new_limit: int = None):
+    def limit(self, new_limit: int | None = None):
         self._limit = new_limit
         return self
 
