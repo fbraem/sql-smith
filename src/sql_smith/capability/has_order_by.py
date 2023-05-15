@@ -10,6 +10,10 @@ class HasOrderByMixin:
         self._order_by = []
         return self
 
+    @property
+    def has_order(self) -> bool:
+        return len(self._order_by) > 0
+
     def _apply_order_by(self, query: "ExpressionInterface") -> "ExpressionInterface":
         return (
             query.append("ORDER BY {}", listing(self._order_by))
