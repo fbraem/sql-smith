@@ -2,7 +2,7 @@ from sql_smith.functions import order, listing
 
 
 class HasOrderByMixin:
-    def order_by(self, column: str = None, direction: str = None):
+    def order_by(self, column: str | None = None, direction: str | None = None):
         if column:
             self._order_by.append(order(column, direction))
             return self
