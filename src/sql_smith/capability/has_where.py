@@ -3,6 +3,11 @@ class HasWhereMixin:
         self._where = criteria
         return self
 
+    @property
+    def has_where(self) -> bool:
+        """Return True when there is a WHERE clause set to this query."""
+        return self._where is not None
+
     def and_where(self, criteria: "CriteriaInterface"):
         if self._where is None:
             return self.where(criteria)
