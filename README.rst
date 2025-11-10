@@ -9,6 +9,8 @@ sql-smith
 
 Read the full `documentation <https://fbraem.github.io/sql-smith>`_.
 
+> Development of sql-smith will be continued in the uv worskpace of the [kwai repository](https://codeberg.org/zumuta/kwai/src/branch/master/backend/packages/sql-smith) at Codeberg.
+
 Installation
 ************
 
